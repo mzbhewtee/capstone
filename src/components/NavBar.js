@@ -81,7 +81,7 @@ function Navbar() {
                 onClick={toggleMenu}
             >
                 <div className='flex justify-center items-center h-full p-4 cursor-pointer text-xl'>
-                    <ion-icon name={isMenuOpen ? 'close' : 'menu'} className='text-white text-center'></ion-icon>
+                    <ion-icon name={isMenuOpen ? 'close' : 'menu'} className='text-primary text-center'></ion-icon>
                 </div>
             </div>
             {isMenuOpen && (
