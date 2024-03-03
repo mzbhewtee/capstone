@@ -28,20 +28,19 @@ function QP() {
                         Welcome to the fascinating world of quantum physics! In this section, we will embark on a journey to explore the fundamental principles and phenomena that govern the behavior of particles at the smallest scales of the universe. Quantum physics, also known as quantum mechanics, is a captivating field of study that delves into the mysteries of matter and energy at their most fundamental level.
                     </p>
                     <p className="mt-2 md:ml-10 text-lg text-justify"> Throughout our exploration, you will discover the following key concepts: </p>
-                    <ul className="mt-2 md:ml-10 text-lg list-disc list-inside">
-                        <li>Classical Mechanics vs. Quantum Mechanics</li>
+                    
+                </div>
+
+
+            </div>
+            <ul className="mt-2 md:ml-10 text-lg list-disc list-inside">
+            <li>Classical Mechanics vs. Quantum Mechanics</li>
                         <li>Mathematical Foundation of Quantum Mechanics</li>
                         <li>Wave Mechanics and Quantum Theory Postulates</li>
                         <li>Introduction to the Schrödinger Equation</li>
                         <li>Quantum Operators and Observables</li>
                         <li>Quantum States and Wavefunctions</li>
                         <li>Quantum Systems and Entanglement</li>
-                    </ul>
-                </div>
-
-
-            </div>
-            <ul className="mt-2 md:ml-10 text-lg list-disc list-inside">
                 <li>Interpretation of Quantum Mechanics</li>
                 <li>Experimental Basis of Quantum Physics</li>
                 <li>Advanced Topics in Quantum Physics</li>

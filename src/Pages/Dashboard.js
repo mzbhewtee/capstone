@@ -1,10 +1,10 @@
 import React from "react";
-import Navigator from "../components/Navigator";
+import { Sidebar } from "../components/Sidebar";
 
 function Dashboard() {
     return (
         <div>
-            < Navigator />
+            < Sidebar />
         </div>
     );
 }

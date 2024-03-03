@@ -1,12 +1,12 @@
 import React from "react";
 import Post from "../components/Post";
-import Navigator from "../components/Navigator";
 import Posts from "../components/Posts";
+import Sidebar from "../components/Sidebar";
 
 function Community() {
     return (
-        <div className="pt-16 md:pt-32">
-            < Navigator />
+        <div className="">
+            < Sidebar />
             < Post  />
             < Posts />
             

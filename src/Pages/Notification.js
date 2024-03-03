@@ -1,12 +1,12 @@
 import React from "react";
-import Navigator from "../components/Navigator";
 import image from "../assets/images/profile.png";
+import Sidebar from "../components/Sidebar";
 
 function Notification() {
     return (
         <div>
-            <Navigator />
-            <div className="pl-5 md:pl-96 pr-5 mt-5 md:pr-96 pb-20 md:pb-10 pt-16 md:pt-32">
+            < Sidebar />
+            <div className="pl-5 md:pl-96 pr-5 mt-5 md:pr-96 pb-20 md:pb-10">
                 <div className="border rounded-md w-full h-auto p-5">
                     <div className="items-center justify-center">
                         <h1 className="text-2xl font-bold text-center mb-3">Notifications</h1>

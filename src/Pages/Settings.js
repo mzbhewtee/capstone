@@ -3,97 +3,131 @@ import { useAuth } from "../context/authContext";
 import { doSignOut } from "../auth";
 import { useNavigate } from "react-router-dom";
 import profile from "../assets/images/profile.png";
-import Navigator from "../components/Navigator";
+import { FaCamera, FaSignOutAlt } from "react-icons/fa";
+import Sidebar from "../components/Sidebar";
 
 function Settings() {
-    const { currentUser, userLoggedIn } = useAuth();
-    const navigate = useNavigate();
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [name, setName] = useState(currentUser.name); // Assuming name is stored in currentUser
-    const [phone, setPhone] = useState(currentUser.phone); // Assuming phone is stored in currentUser
+  const { currentUser, userLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [name, setName] = useState(currentUser.name); // Assuming name is stored in currentUser
+  const [phone, setPhone] = useState(currentUser.phone); // Assuming phone is stored in currentUser
 
-    const handleLogout = async () => {
-        try {
-            await doSignOut();
-            navigate("/"); // Redirect to the home page after logout
-        } catch (error) {
-            console.log("Error signing out: ", error);
-        }
-    };
+  const handleLogout = async () => {
+    try {
+      await doSignOut();
+      navigate("/"); // Redirect to the home page after logout
+    } catch (error) {
+      console.log("Error signing out: ", error);
+    }
+  };
 
-    const handleImageChange = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            setSelectedImage(URL.createObjectURL(event.target.files[0]));
-        }
-    };
+  const handleImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setSelectedImage(URL.createObjectURL(event.target.files[0]));
+    }
+  };
 
-    const handleNameChange = (event) => {
-        setName(event.target.value);
-    };
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
 
-    const handlePhoneChange = (event) => {
-        setPhone(event.target.value);
-    };
+  const handlePhoneChange = (event) => {
+    setPhone(event.target.value);
+  };
 
-    return (
-        <div className="relative top-0 left-0 w-full h-screen flex justify-center items-center bg-gray-100">
-            < Navigator />
-            <div>
-                {userLoggedIn && currentUser && (
-                    <div className="bg-white rounded-lg w-96 h-96 shadow-md px-4 py-5 flex flex-col items-center">
-                        <div className="w-20 h-20 overflow-hidden rounded-full">
-                            <img
-                                src={selectedImage || profile}
-                                alt="Profile"
-                                className="w-full h-full object-cover"
-                            />
-                            <label htmlFor="image-upload">
-                                <p className="cursor-pointer text-primary z-30"
-                                >
-                                    Edit
-                                </p>
-                            </label>
-                            <input
-                                type="file"
-                                id="image-upload"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                style={{ display: "none" }}
-                            />
-                        </div>
-                        
-
-                        <p className="text-gray-700 text-xs md:text-md md:font-medium mt-4">
-                            {currentUser.email}
-                        </p>
-                        <p className="text-gray-700 text-xs md:text-md md:font-medium mt-2">
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={handleNameChange}
-                                className="text-sm bg-transparent border-none focus:ring-2 focus:ring-blue-500 rounded-md p-0.5"
-                            />
-                        </p>
-                        <p className="text-gray-700 text-xs md:text-md md:font-medium mt-2">
-                            <input
-                                type="tel"
-                                value={phone}
-                                onChange={handlePhoneChange}
-                                className="text-sm bg-transparent border-none focus:ring-2 focus:ring-blue-500 rounded-md p-0.5"
-                            />
-                        </p>
-                        <button
-                            onClick={handleLogout}
-                            className="text-gray-700 text-xs md:text-md md:font-medium mt-2"
-                        >
-                            Logout
-                        </button>
-                    </div>
-
-                )}
-            </div>
+  return (
+    <div>
+        < Sidebar />
+    <div className="flex h-screen">
+      <div className="flex flex-col items-center justify-center w-full p-32">
+        <div className="w-48 border bg-gray-100 text-gray-800 fixed md:top-28 mt-14 left-0 z-10 h-full">
+          {/* Sidebar content */}
+          <ul className="p-4">
+            <li className="mb-2 bg-accent p-5 rounded-md">
+              <a href="#" className="text-xl font-bold justify-center">
+                Settings
+              </a>
+            </li>
+            <li className="mb-2">
+              <a href="#" className="text-lg">
+                Profile
+              </a>
+            </li>
+            <li className="mb-2">
+              <a href="#" className="text-lg">
+                Account
+              </a>
+            </li>
+            <li className="mb-2">
+                <a href="#" className="text-lg">
+                    Privacy
+                </a>
+            </li>
+            <li className="mb-2">
+                <a href="#" className="text-lg">
+                    Help
+                </a>
+            </li>
+            <li>
+              <FaSignOutAlt className="text-lg cursor-pointer" onClick={handleLogout} />
+            </li>
+          </ul>
         </div>
-    );
+        <div className="flex-1 p-4 overflow-y-auto">
+          {/* Main content */}
+          {userLoggedIn && currentUser && (
+            <div className="bg-white rounded-lg p-4">
+              <div className="flex items-center mb-4">
+                <div className="relative w-20 h-20 overflow-hidden rounded-full mr-4">
+                  <img
+                    src={selectedImage || profile}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
+                  <label htmlFor="image-upload">
+                    <FaCamera
+                      alt="Change profile image"
+                      className="absolute bottom-4 right-4 w-6 h-6 text-white bg-green-500 rounded-full cursor-pointer"
+                    />
+                  </label>
+                  <input
+                    type="file"
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    style={{ display: "none" }}
+                  />
+                </div>
+                <div>
+                  <p className="text-gray-700 text-xl font-bold">{currentUser.email}</p>
+                </div>
+              </div>
+              <p className="text-gray-700 text-xs md:text-md md:font-medium mt-4">
+                Name:
+                <input
+                  type="text"
+                  value={name}
+                  onChange={handleNameChange}
+                  className="text-sm bg-transparent border-none focus:ring-2 focus:ring-blue-500 rounded-md p-0.5 ml-2"
+                />
+              </p>
+              <p className="text-gray-700 text-xs md:text-md md:font-medium mt-2">
+                Phone:
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  className="text-sm bg-transparent border focus:ring-2 focus:ring-blue-500 rounded-md p-0.5 ml-2"
+                />
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+    </div>
+  );
 }
 
 export default Settings;
