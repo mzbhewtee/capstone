@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import EducationSide from "../components/EducationSide";
 import QP from "../Quantum Physics/QP";
 import Sidebar from "../components/Sidebar";
 

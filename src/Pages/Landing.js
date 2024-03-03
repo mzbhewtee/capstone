@@ -5,6 +5,7 @@ import Features from "../components/Features";
 import About from "../components/About";
 import Education from "./Education";
 import Footer from "../components/Footer";
+import { FrequentlyAskedQuestions } from "../components/FrequentlyAskedQuestions";
 
 function Landing() {
     return (
@@ -13,7 +14,7 @@ function Landing() {
             < HeroSection />
             < Features />
             < About />
-           
+            < FrequentlyAskedQuestions />
             < Footer />
         </div>
     );

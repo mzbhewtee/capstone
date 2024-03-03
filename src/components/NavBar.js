@@ -80,8 +80,8 @@ function Navbar() {
                 className={`w-50 lg:hidden fixed cursor-pointer top-4 right-10 z-40 transition-all ${isMenuOpen ? 'transform rotate-180' : 'transform rotate-0'}`}
                 onClick={toggleMenu}
             >
-                <div className='flex justify-center items-center h-full p-4 cursor-pointer text-xl'>
-                    <ion-icon name={isMenuOpen ? 'close' : 'menu'} className='text-primary text-center'></ion-icon>
+                <div className='flex justify-center items-center h-full p-4 text-primary cursor-pointer text-xl'>
+                    <ion-icon name={isMenuOpen ? 'close' : 'menu'} className='text-center'></ion-icon>
                 </div>
             </div>
             {isMenuOpen && (

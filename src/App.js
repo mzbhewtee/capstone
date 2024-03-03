@@ -9,6 +9,7 @@ import Community from './Pages/Community';
 import Notification from './Pages/Notification';
 import { AuthProvider } from './context/authContext'; // Update the path to authContext
 import Settings from './Pages/Settings';
+import Profile from './Pages/Profile';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path='/community' element={<Community />} />
           <Route path='/notifications' element={<Notification />} />
           <Route path='/settings' element={<Settings />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>
       </AuthProvider>
     </Router>

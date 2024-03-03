@@ -1,5 +1,5 @@
 import React from "react";
-import about from "../assets/images/about.png";
+import AboutComponent  from "./AboutComponent";
 
 function About() {
     return (
@@ -7,11 +7,19 @@ function About() {
             <div className="flex flex-col lg:h-auto items-center justify-center pb-16 p-5 md:pr-10 md:pl-10 lg:pr-10 mt-10 lg:mt-10 ">
                 <p className="text-center font-link text-sm md:text-lg mb-1 text-primary">What We Do</p>
                 <h1 className="text-xl md:text-2xl font-link font-bold text-center mb-5">About Us</h1>
-                <div className="md:flex mt-5 md:mt-10 justify-center align-middle">
-                    <img className="rounded-lg shadow-xl border h-60 w-96 md:w-full md:h-gee" src={about} alt="About Us" />
-                    <div className="flex flex-col justify-center md:ml-10">
-                        <h2 className="font-link md:text-lg text-justify mt-5 md:mt-0 md:justify-center">QuantumRenew harnesses the power of quantum simulation to model complex physical systems inherent in renewable energy technologies. From optimizing solar panel configurations to designing catalysts for energy conversion processes, QuantumRenew provides cutting-edge tools to explore, analyze, and optimize renewable energy solutions.</h2>
-                    </div>
+                <div className="md:flex mt-5 md:mt-10 justify-center align-middle space-x-2">
+                    <AboutComponent
+                        header="Our Mission"
+                        paragraph="Our mission is to provide a platform for renewable energy researchers and engineers to leverage quantum computing to solve complex problems in the renewable energy industry."
+                    />
+                    <AboutComponent
+                        header="Our Vision"
+                        paragraph="Our vision is to drive sustainable energy innovation by enabling researchers and engineers to model, optimize, and analyze renewable energy systems using advanced quantum simulation technology."
+                    />
+                    <AboutComponent
+                        header="Our Values"
+                        paragraph="Our core values are innovation, collaboration, and sustainability. We are committed to fostering a culture of innovation, collaboration, and sustainability to drive positive change in the renewable energy sector."
+                    />
                 </div>
             </div>
         </section>

@@ -39,41 +39,7 @@ function Settings() {
   return (
     <div>
         < Sidebar />
-    <div className="flex h-screen">
-      <div className="flex flex-col items-center justify-center w-full p-32">
-        <div className="w-48 border bg-gray-100 text-gray-800 fixed md:top-28 mt-14 left-0 z-10 h-full">
-          {/* Sidebar content */}
-          <ul className="p-4">
-            <li className="mb-2 bg-accent p-5 rounded-md">
-              <a href="#" className="text-xl font-bold justify-center">
-                Settings
-              </a>
-            </li>
-            <li className="mb-2">
-              <a href="#" className="text-lg">
-                Profile
-              </a>
-            </li>
-            <li className="mb-2">
-              <a href="#" className="text-lg">
-                Account
-              </a>
-            </li>
-            <li className="mb-2">
-                <a href="#" className="text-lg">
-                    Privacy
-                </a>
-            </li>
-            <li className="mb-2">
-                <a href="#" className="text-lg">
-                    Help
-                </a>
-            </li>
-            <li>
-              <FaSignOutAlt className="text-lg cursor-pointer" onClick={handleLogout} />
-            </li>
-          </ul>
-        </div>
+    
         <div className="flex-1 p-4 overflow-y-auto">
           {/* Main content */}
           {userLoggedIn && currentUser && (
@@ -124,9 +90,7 @@ function Settings() {
             </div>
           )}
         </div>
-      </div>
-    </div>
-    </div>
+        </div>
   );
 }
 
