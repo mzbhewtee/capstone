@@ -7,8 +7,8 @@ import Dashboard from './Pages/Dashboard';
 import Education from './Pages/Education';
 import Community from './Pages/Community';
 import Notification from './Pages/Notification';
-import Profile from './Pages/Profile';
 import { AuthProvider } from './context/authContext'; // Update the path to authContext
+import Settings from './Pages/Settings';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <Route path='/education' element={<Education />} />
           <Route path='/community' element={<Community />} />
           <Route path='/notifications' element={<Notification />} />
-          <Route path='profile' element={<Profile />} />
+          <Route path='/settings' element={<Settings />} />
         </Routes>
       </AuthProvider>
     </Router>

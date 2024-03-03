@@ -1,13 +1,10 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { IoIosPeople, IoIosBook, IoIosHome, IoIosNotifications, IoIosSearch } from "react-icons/io";
+import { IoIosPeople, IoIosSearch, IoIosSettings } from "react-icons/io";
 import { MdSpaceDashboard } from "react-icons/md";
 import { IoSchoolSharp, IoNotifications } from "react-icons/io5";
 import Logo from "../assets/images/logo.png";
-import { useAuth } from "../context/authContext";
-import { doSignOut } from "../auth";
-import profile from "../assets/images/profile.png";
-import Profile from "../Pages/Profile";
+
 
 
 function Navigator() {
@@ -18,7 +15,8 @@ function Navigator() {
         { path: "/dashboard", text: "Home", icon: MdSpaceDashboard },
         { path: "/education", text: "Education", icon: IoSchoolSharp },
         { path: "/notifications", text: "Notifications", icon: IoNotifications },
-        { path: "/community", text: "Community", icon: IoIosPeople }
+        { path: "/community", text: "Community", icon: IoIosPeople },
+        { path: "/settings", text: "Settings", icon: IoIosSettings}
     ];
 
     return (
@@ -43,14 +41,6 @@ function Navigator() {
                         <p className={`${location.pathname === section.path ? 'text-primary' : 'text-gray-700'} text-xs`}>{section.text}</p>
                     </Link>
                 ))}
-            </div>
-
-            {/* Profile and Logout */}
-            <div className="flex items-center md:space-x-4 pt-4 pr-5 pb-4 md:p-10">
-                <Link to="/profile" className="text-gray-700 text-xs md:text-md md:font-medium">
-                <img src={profile} alt="Profile" className="w-7 md:w-10 h-7 md:h-10 rounded-full"/>
-                </Link>
-                
             </div>
         </div>
         <div className="flex lg:hidden z-20 justify-between p-5 fixed bottom-0 bg-white border w-full">
