@@ -9,7 +9,7 @@ import { FrequentlyAskedQuestions } from "../components/FrequentlyAskedQuestions
 
 function Landing() {
     return (
-        <div>
+        <div className="mr-10 ml-10 font-link">
             < Navbar />
             < HeroSection />
             < Features />

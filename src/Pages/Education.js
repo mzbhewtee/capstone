@@ -10,10 +10,10 @@ function Education() {
     };
 
     return (
-        <div>
+        <div className="">
             
             <Sidebar />                
-                <div className="flex flex-col mr-4 ml-4 mb-40 md:ml-20 md:mr-20">
+                <div className=" mr-10 ml-10 font-link flex flex-col mb-40 md:ml-20 md:mr-20">
                     <div className="flex flex-col md:flex-row justify-center items-center mt-10">
                         {/* Render content based on selectedContent */}
                         {selectedContent === 'quantum_physics' && (

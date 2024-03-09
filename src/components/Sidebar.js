@@ -8,7 +8,9 @@ import {
     Accordion,
     AccordionHeader,
     AccordionBody,
+    Input,
 } from "@material-tailwind/react";
+import { FaSearch } from "react-icons/fa";
 import { IoIosPeople } from "react-icons/io";
 import { MdSpaceDashboard } from "react-icons/md";
 import { IoSchoolSharp, IoNotifications } from "react-icons/io5";
@@ -53,13 +55,31 @@ export function Sidebar() {
 
     return (
         <>
-            <div className="fixed bg-accent rounded-full z-20 flex justify-end p-4">
-                <button
-                    onClick={() => setOpen(!open)}
-                    aria-label="Toggle sidebar" // Accessibility improvement
-                >
-                    {open ? <XMarkIcon className="h-8 w-8 text-blue-gray-800" /> : <Bars3Icon className="h-8 w-8 text-blue-gray-800" />}
-                </button>
+            <div className="flex justify-between items-center mr-10 ml-10 font-link">
+                <div className="z-20 p-10">
+                    <button
+                        onClick={() => setOpen(!open)}
+                        aria-label="Toggle sidebar" // Accessibility improvement
+                    >
+                        {open ? <XMarkIcon className="h-8 w-8 text-blue-gray-800" /> : <Bars3Icon className="h-8 w-8 text-blue-gray-800" />}
+                    </button>
+                </div>
+                <div className="ml-4 p-4 mr-6">
+                    <div className="relative w-72">
+                        <Input
+                            type="text"
+                            placeholder="Search"
+                            label="Search"
+                            className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
+                            labelProps={{
+                                className: "hidden",
+                            }}
+                            containerProps={{ className: "min-w-[100px]" }}
+                            icon={<FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500" />}
+                        />
+                    </div>
+                </div>
+
             </div>
             <Card className={`h-[100vh] md:w-full max-w-[20rem] p-4 font-link shadow-xl shadow-blue-gray-900/5 fixed top-0 overflow-y-auto transition duration-300 ease-in-out ${open ? "translate-x-0" : "-translate-x-full"
                 }`}>
@@ -183,22 +203,22 @@ export function Sidebar() {
                                     {/* Your list of Quantum Computing sub-items here */}
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Introduction to Classical Computing" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Introduction to Classical Computing
+                                            Introduction to Classical Computing
                                         </Link>
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Foundations of Quantum Mechanics" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Foundations of Quantum Mechanics
+                                            Foundations of Quantum Mechanics
                                         </Link>
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Qubits and Quantum Gates" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Qubits and Quantum Gates
+                                            Qubits and Quantum Gates
                                         </Link>
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Quantum Algorithms" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Quantum Algorithms
+                                            Quantum Algorithms
                                         </Link>
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
@@ -208,37 +228,37 @@ export function Sidebar() {
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Quantum Error Correction" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Quantum Error Correction
+                                            Quantum Error Correction
                                         </Link>
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Quantum Hardware" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Quantum Hardware
+                                            Quantum Hardware
                                         </Link>
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Quantum Programming" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Quantum Programming
+                                            Quantum Programming
                                         </Link>
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Applications of Quantum Computing" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Applications of Quantum Computing
+                                            Applications of Quantum Computing
                                         </Link>
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Quantum Information Theory" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Quantum Information Theory
+                                            Quantum Information Theory
                                         </Link>
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Experimental Quantum Computing" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Experimental Quantum Computing
+                                            Experimental Quantum Computing
                                         </Link>
                                     </ListItem>
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Future Directions and Challenges" spy={true} smooth={true} offset={-70} duration={500}>
-                                        Future Directions and Challenges
+                                            Future Directions and Challenges
                                         </Link>
                                     </ListItem>
                                 </List>

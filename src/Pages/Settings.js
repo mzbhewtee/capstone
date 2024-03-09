@@ -37,10 +37,10 @@ function Settings() {
   };
 
   return (
-    <div>
+    <div className="">
         < Sidebar />
     
-        <div className="flex-1 p-4 overflow-y-auto">
+        <div className="mr-10 ml-10 font-link flex-1 p-4 overflow-y-auto">
           {/* Main content */}
           {userLoggedIn && currentUser && (
             <div className="bg-white rounded-lg p-4">

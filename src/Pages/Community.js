@@ -6,7 +6,7 @@ import Sidebar from "../components/Sidebar";
 function Community() {
     return (
         <div className="">
-            < Sidebar />
+            < Sidebar /> 
             < Post  />
             < Posts />
             

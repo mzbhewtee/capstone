@@ -4,9 +4,9 @@ import Sidebar from "../components/Sidebar";
 
 function Notification() {
     return (
-        <div>
+        <div className="">
             < Sidebar />
-            <div className="pl-5 md:pl-96 pr-5 mt-5 md:pr-96 pb-20 md:pb-10">
+            <div className="mr-10 ml-10 font-link pl-5 md:pl-96 pr-5 mt-5 md:pr-96 pb-20 md:pb-10">
                 <div className="border rounded-md w-full h-auto p-5">
                     <div className="items-center justify-center">
                         <h1 className="text-2xl font-bold text-center mb-3">Notifications</h1>
