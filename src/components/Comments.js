@@ -1,34 +1,57 @@
-import React, { useState, useEffect } from "react";
-import { BiCommentDetail } from "react-icons/bi";
-import { db, auth } from "../firebase"; // Import Firebase db, auth, and doc
-import { doc, deleteDoc, setDoc, collection, getDocs, serverTimestamp } from "firebase/firestore"; // Import Firestore doc and getDoc
-import Comments from "./Comments";
+import React, { useState, useEffect } from 'react';
+import { db, auth } from "../firebase";
+import { collection, query, orderBy, getDocs, doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 
-const CommentPost = ({ postId }) => {
-    const [commented, setCommented] = useState(false);
-    const [commentCount, setCommentCount] = useState(0);
-    const [showTextArea, setShowTextArea] = useState(false);
-    const [commentText, setCommentText] = useState("");
+function AllComments({ postId }) {
     const [comments, setComments] = useState([]);
+    const [error, setError] = useState(null);
+    const [commentText, setCommentText] = useState(""); // Define state for comment input
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchComments = async () => {
             try {
-                // Fetch the comments for the post
-                const q = collection(db, `posts/${postId}/comments`);
+                const user = auth.currentUser;
+                if (!user) {
+                    setError('You must be logged in to view comments.');
+                    return;
+                }
+
+                // Make sure postId is not empty
+                if (!postId) {
+                    setError('Post ID is required to fetch comments.');
+                    return;
+                }
+
+                const commentsCollection = collection(db, `posts/${postId}/comments`);
+                const q = query(commentsCollection, orderBy('createdAt', 'desc'));
                 const querySnapshot = await getDocs(q);
-                const fetchedComments = [];
-                querySnapshot.forEach((doc) => {
-                    fetchedComments.push({ id: doc.id, ...doc.data() });
-                });
-                setComments(fetchedComments);
-                setCommentCount(querySnapshot.size);
+
+                const commentsData = [];
+                for (const docRef of querySnapshot.docs) {
+                    const commentData = docRef.data();
+                    // Fetch user data for each comment
+                    const userDoc = await getDoc(doc(db, 'users', commentData.userId));
+                    if (userDoc.exists()) {
+                        const userData = userDoc.data();
+                        commentsData.push({
+                            id: docRef.id,
+                            ...commentData,
+                            user: {
+                                profilePictureURL: userData.profilePictureURL,
+                                fullname: userData.fullname
+                            }
+                        });
+                    }
+                }
+
+                setComments(commentsData);
             } catch (error) {
-                console.error("Error fetching comment data:", error);
+                console.error('Error fetching comments:', error);
+                setError('Failed to fetch comments. Please try again later.');
             }
         };
 
-        fetchData();
+        fetchComments();
     }, [postId]);
 
     const handleComment = async () => {
@@ -42,35 +65,73 @@ const CommentPost = ({ postId }) => {
                     createdAt: serverTimestamp()
                 });
                 setCommentText(""); // Clear the comment text after sending
-                setCommentCount((prevCount) => prevCount + 1); // Increment comment count
+                setComments(prevComments => [...prevComments, { 
+                    text: commentText, 
+                    user: { 
+                        fullname: user.displayName, // Use displayName instead of fullname
+                        profilePictureURL: user.photoURL // Use photoURL instead of profilePictureURL
+                    }, 
+                    createdAt: new Date() 
+                }]);
             }
         } catch (error) {
             console.error("Error commenting on post:", error);
         }
     };
+    
 
     const handleTextAreaChange = (event) => {
         setCommentText(event.target.value);
     };
 
+    // Function to calculate time difference (moved inside the component)
+    // Function to calculate time difference (moved inside the component)
+    const getTimeDifference = (timestamp) => {
+        if (!(timestamp instanceof Date)) {
+            timestamp = timestamp.toDate(); // Convert Firestore Timestamp to Date object
+        }
+
+        const now = new Date();
+        const differenceInSeconds = Math.floor((now - timestamp) / 1000);
+        if (differenceInSeconds < 60) {
+            return `${differenceInSeconds} seconds ago`;
+        } else if (differenceInSeconds < 3600) {
+            return `${Math.floor(differenceInSeconds / 60)} minutes ago`;
+        } else if (differenceInSeconds < 86400) {
+            return `${Math.floor(differenceInSeconds / 3600)} hours ago`;
+        } else {
+            return `${Math.floor(differenceInSeconds / 86400)} days ago`;
+        }
+    };
+
+
     return (
-        <div className='flex items-center flex-col mt-2 md:mt-5'>
-            <span className={`text-sm md:text-md ${commented ? 'text-primary' : 'text-gray-400'}`} onClick={() => setShowTextArea(true)}>{commentCount} Comments</span>
-            {showTextArea && (
-                <div className="mt-2 flex items-center">
-                    <textarea
-                        value={commentText}
-                        onChange={handleTextAreaChange}
-                        placeholder="Write your comment..."
-                        className="flex-grow border border-gray-300 rounded-md p-2"
-                    />
-                    <button onClick={handleComment} className="ml-2 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md">Send</button>
+        <div>
+            <div className="mt-2 mb-4 flex items-center">
+                <textarea
+                    value={commentText}
+                    onChange={handleTextAreaChange}
+                    placeholder="Write your comment..."
+                    className="flex-grow border border-gray-300 rounded-md p-2"
+                />
+                <button onClick={handleComment} className="ml-2 bg-primary hover:shadow-md text-white px-4 py-3 rounded-md">Send</button>
+            </div>
+            {error && <p>{error}</p>}
+            {comments.map((comment, index) => (
+                <div key={index} className='mb-3'>
+                    <div className='flex items-center'>
+                        <img src={comment.user.profilePictureURL} alt="Profile" className="rounded-full w-8 h-8 mr-2" />
+                        <div>
+                            <p className='text-xs font-bold'>{comment.user.fullname}</p>
+                            <p className='text-xs'>{getTimeDifference(comment.createdAt)}</p>
+                        </div>
+                    </div>
+                    <p className='mt-2 mb-2 text-sm'>{comment.text}</p>
+                    <hr />
                 </div>
-            )}
-            <Comments comments={comments} />
+            ))}
         </div>
     );
 }
 
-export default CommentPost;
-
+export default AllComments;
