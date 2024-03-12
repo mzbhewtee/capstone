@@ -10,21 +10,21 @@ function Dashboard() {
     return (
         <div className="">
             < Sidebar />
-            <div className="mr-10 ml-10 mb-10 font-link">
-                <div className="flex items-center justify-between border m-10 shadow-md rounded-md">
-                    <div className="w-2/3 p-12">
+            <div className="md:mr-10 md:ml-10 mb-10 font-link">
+                <div className="md:flex items-center justify-between border m-10 shadow-md rounded-md">
+                    <div className="md:w-2/3 md:p-12 p-5">
                         <h1 className="text-2xl font-bold mb-2">Empowering Renewable Energy Innovation</h1>
                         <p className="text-md">Harness the power of quantum simulation to optimize renewable energy systems and drive sustainable innovation. QuantumRenew provides advanced simulation tools and real-time
                             data integration to help you unlock new insights and accelerate the transition to clean energy solutions. </p>
                     </div>
                     <div className="p-8">
-                        <button className="bg-primary hover:shadow-md text-white text-sm py-4 px-4 rounded-xl mt-4">Start Simulation</button>
+                        <button className="bg-primary hover:shadow-md text-white text-sm py-4 px-4 rounded-xl md:mt-4">Start Simulation</button>
                     </div>
                 </div>
 
-                <p className="text-md font-bold ml-10">Try Other Simulators</p>
-                <h3 className="text-md font-extralight ml-10 mb-10">Check out other quantum computer simulator from wellknown organizations</h3>
-                <div className="flex justify-around ml-10 mr-10">
+                <p className="text-md font-bold ml-10 mr-10">Try Other Simulators</p>
+                <h3 className="text-md font-extralight ml-10 mr-10 md:mb-10 mb-20">Check out other quantum computer simulator from wellknown organizations</h3>
+                <div className="md:flex justify-around ml-10 mr-10">
                     <SimulatorComp
                         image={microsoft}
                         header="Azure Quantum"

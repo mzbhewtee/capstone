@@ -15,8 +15,8 @@ class News extends React.Component {
                         {this.props.paragraph}
                     </Typography>
                 </CardBody>
-                <CardFooter className="pt-2 mb-5">
-                    <a href={this.props.linkUrl}className="text-sm text-primary flex items-center gap-3 hover:text-md">Read More <FaArrowRight/></a>
+                <CardFooter className="pt-2 mb-5 flex justify-end">
+                    <a href={this.props.linkUrl} className="text-sm text-primary flex items-center gap-3 hover:text-md">Read More <FaArrowRight/></a>
                 </CardFooter>
             </Card>
         );

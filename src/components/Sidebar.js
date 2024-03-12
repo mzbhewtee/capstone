@@ -20,6 +20,7 @@ import logo from "../assets/images/logo.png";
 import { Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
 import { doSignOut } from "../auth";
+import { useAuth } from "../context/authContext";
 
 export function Sidebar() {
     const [open, setOpen] = useState(false); // State for sidebar visibility
@@ -27,6 +28,7 @@ export function Sidebar() {
     const [openQuantumPhysics, setOpenQuantumPhysics] = React.useState(false);
     const [openQuantumComputing, setOpenQuantumComputing] = React.useState(false);
     const navigate = useNavigate();
+    const { currentUser } = useAuth(); // Access currentUser from context
 
     const handleOpenEducation = (value) => {
         setOpenEducation(openEducation === value ? 0 : value);
@@ -38,6 +40,12 @@ export function Sidebar() {
             navigate("/"); // Redirect to the home page after logout
         } catch (error) {
             console.log("Error signing out: ", error);
+        }
+    };
+
+    const navigateToProfile = () => {
+        if (currentUser) {
+            navigate(`/profile/${currentUser.uid}`); // Navigating to the profile page with the user's UID
         }
     };
 
@@ -55,7 +63,7 @@ export function Sidebar() {
 
     return (
         <>
-            <div className="flex justify-between items-center mr-10 ml-10 font-link">
+            <div className="flex justify-between items-center md:mr-10 md:ml-10 font-link">
                 <div className="z-20 p-10">
                     <button
                         onClick={() => setOpen(!open)}
@@ -65,7 +73,7 @@ export function Sidebar() {
                     </button>
                 </div>
                 <div className="ml-4 p-4 mr-6">
-                    <div className="relative w-72">
+                    <div className="relative md:w-72 w-48">
                         <Input
                             type="text"
                             placeholder="Search"
@@ -278,7 +286,7 @@ export function Sidebar() {
                         </ListItemPrefix>
                         <Typography color="blue-gray" className="mr-auto font-normal">Community</Typography>
                     </ListItem>
-                    <ListItem onClick={() => navigateTo('/profile')}>
+                    <ListItem onClick={navigateToProfile}>
                         <ListItemPrefix>
                             <UserCircleIcon className="h-5 w-5" />
                         </ListItemPrefix>

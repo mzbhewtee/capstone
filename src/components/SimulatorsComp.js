@@ -10,7 +10,7 @@ import {
 class SimulatorComp extends React.Component {
     render() {
         return (
-            <Card className="mt-6 mb-6 w-1/3 ml-5">
+            <Card className="mt-6 md:mb-6 md:w-1/3 md:ml-5 mb-20">
                 <CardHeader color="white" className="relative h-56">
                     <img
                         src={this.props.image}

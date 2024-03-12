@@ -17,6 +17,9 @@ module.exports = withMT({
       height: {
         "gee": "28rem",
       },
+      width: {
+        "norm": "19rem",
+      },
       textSizes: {
         "xxs": "4.5rem",
       },

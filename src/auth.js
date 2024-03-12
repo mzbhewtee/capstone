@@ -17,19 +17,3 @@ export const doSignInWithGoogle = () => {
 export const doSignOut = () => {
     return auth.signOut();
 };
-
-// export const doPasswordReset = (email) => {
-//     return sendPasswordResetEmail(auth, email);
-// };
-
-// export const doPasswordUpdate = (password) => {
-//     return updatePassword(auth.currentUser, password);
-// };
-
-// export const doEmailUpdate = (email) => {
-//     return updateEmail(auth.currentUser, email);
-// };
-
-// export const doEmailVerification = () => {
-//     return sendEmailVerification(auth.currentUser);
-// };
