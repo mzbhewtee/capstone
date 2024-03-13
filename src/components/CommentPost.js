@@ -30,6 +30,23 @@ const CommentPost = ({ postId }) => {
         fetchData();
     }, [postId]);
 
+    const handleComment = async () => {
+        try {
+            const user = auth.currentUser;
+            if (user) {
+                const commentDocRef = doc(collection(db, `posts/${postId}/comments`));
+                await setDoc(commentDocRef, {
+                    userId: user.uid,
+                    text: commentText,
+                    createdAt: serverTimestamp()
+                });
+                setCommentText(""); // Clear the comment text after sending
+                setCommentCount((prevCount) => prevCount + 1); // Increment comment count
+            }
+        } catch (error) {
+            console.error("Error commenting on post:", error);
+        }
+    };
 
 
     return (

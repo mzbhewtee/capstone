@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BiSolidLike } from "react-icons/bi";
 import { db, auth } from "../firebase";
-import { collection, query, getDocs, doc, setDoc, deleteDoc } from "firebase/firestore";
+import { collection, query, getDoc, getDocs, doc, setDoc, deleteDoc } from "firebase/firestore";
 
 const LikePost = ({ postId }) => {
     const [likes, setLikes] = useState([]);
@@ -17,18 +17,18 @@ const LikePost = ({ postId }) => {
                     likesData.push({ id: doc.id, ...doc.data() });
                 });
                 setLikes(likesData);
-
+        
                 const user = auth.currentUser;
                 if (user) {
                     // Check if the user has already liked the post
                     const likeDocRef = doc(db, `posts/${postId}/likes`, user.uid);
-                    const likeDocSnap = await getDocs(likeDocRef);
+                    const likeDocSnap = await getDoc(likeDocRef); // Use getDoc instead of getDocs
                     setLiked(likeDocSnap.exists());
                 }
             } catch (error) {
                 console.error('Error fetching likes:', error);
             }
-        };
+        };        
 
         fetchLikes();
     }, [postId]);

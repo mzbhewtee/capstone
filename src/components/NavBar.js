@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { Link, animateScroll as scroll } from 'react-scroll';
 import Logo from '../assets/images/logo.png';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of Navigate
+import { FaBars } from "react-icons/fa6";
+import { FaTimes } from "react-icons/fa";
+
+
 
 function Navbar() {
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -77,13 +81,14 @@ function Navbar() {
                 </div>
             </div>
             <div
-                className={`w-50 lg:hidden fixed cursor-pointer top-4 right-10 z-40 transition-all ${isMenuOpen ? 'transform rotate-180' : 'transform rotate-0'}`}
+                className={`lg:hidden fixed cursor-pointer top-4 right-10 z-40 transition-all ${isMenuOpen ? 'transform rotate-180' : 'transform rotate-0'}`}
                 onClick={toggleMenu}
             >
-                <div className='flex justify-center items-center h-full p-4 text-primary cursor-pointer text-xl'>
-                    <ion-icon name={isMenuOpen ? 'close' : 'menu'} className='text-center'></ion-icon>
+                <div className='flex justify-center items-center h-full p-2 text-primary cursor-pointer text-xl'>
+                    {isMenuOpen ? <FaTimes /> : <FaBars />}
                 </div>
             </div>
+
             {isMenuOpen && (
                 <div className='fixed z-30 right-0 bg-accent border backdrop-blur-sm w-1/2 h-screen text-secondary font-link text-md lg:text-lg justify-center text-center tracking-wider transition-all'>
                     <ul className={`mt-36 transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-500 ease-in`}>

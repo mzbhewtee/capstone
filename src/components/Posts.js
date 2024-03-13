@@ -52,9 +52,6 @@ function AllPosts() {
                         </div>
                         <div className='h-0.5 w-full bg-gray-200 mt-5 mb-5'></div>
                         <AllComments postId={post.id} />
-
-                      
-                       
                     </div>
                 </div>
             ))}

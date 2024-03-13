@@ -84,8 +84,6 @@ function AllComments({ postId }) {
         setCommentText(event.target.value);
     };
 
-    // Function to calculate time difference (moved inside the component)
-    // Function to calculate time difference (moved inside the component)
     const getTimeDifference = (timestamp) => {
         if (!(timestamp instanceof Date)) {
             timestamp = timestamp.toDate(); // Convert Firestore Timestamp to Date object

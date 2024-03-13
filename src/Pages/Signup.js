@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import img from "../assets/images/login.jpg";
 import { FcGoogle } from "react-icons/fc";
-import { doCreateUserWithEmailAndPassword } from "../auth";
+import { doCreateUserWithEmailAndPassword, doSignUpWithGoogle } from "../auth";
 
 const Signup = () => {
     const [email, setEmail] = useState('');
@@ -36,6 +36,19 @@ const Signup = () => {
             setIsSigningUp(false);
         }
     }
+
+    const onGoogleSignUp = async () => {
+        if (!isSigningUp) {
+            setIsSigningUp(true);
+            try {
+                await doSignUpWithGoogle();
+            } catch (error) {
+                setError(error.message);
+            }
+            setIsSigningUp(false);
+        }
+    }
+
 
 
     return (
@@ -73,7 +86,7 @@ const Signup = () => {
                         </button>
                         {error && <p className="text-red-500 text-center">{error}</p>}
                         <p className="text-center text-sm mt-5">or</p>
-                        <div className="flex border space-x-5 cursor-pointer justify-center bg-accent text-primary p-4 rounded-lg hover:bg-primary/2 focus:outline-none transition duration-500 shadow-lg">
+                        <div className="flex border space-x-5 cursor-pointer justify-center bg-accent text-primary p-4 rounded-lg hover:bg-primary/2 focus:outline-none transition duration-500 shadow-lg" onClick={onGoogleSignUp}>
                             <FcGoogle className="text-2xl text-primary" />
                             <p>Sign Up with Google</p>
                         </div>

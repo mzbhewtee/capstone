@@ -9,7 +9,6 @@ import img from "../assets/images/login.jpg";
 const SignIn = () => {
     const { userLoggedIn } = useAuth();
     const navigate = useNavigate(); // Initialize useNavigate
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
