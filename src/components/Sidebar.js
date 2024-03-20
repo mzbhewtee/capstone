@@ -63,8 +63,8 @@ export function Sidebar() {
 
     return (
         <>
-            <div className="flex justify-between items-center md:mr-10 md:ml-10 mt-5 md:mt-10 font-link">
-                <div className="z-30 p-5 fixed rounded-full bg-primary/10 backdrop-blur-sm">
+            <div className="flex justify-between items-center md:mr-10 md:ml-10 mt-5 font-link">
+                <div className="z-30 p-5 ml-5 fixed rounded-full bg-primary/10 backdrop-blur-sm">
                     <button
                         onClick={() => setOpen(!open)}
                         aria-label="Toggle sidebar" // Accessibility improvement
@@ -89,11 +89,8 @@ export function Sidebar() {
                 </div>
             </div>
 
-            <Card className={`h-[100vh] md:w-full max-w-[20rem] p-4 z-20 font-link shadow-xl shadow-blue-gray-900/5 fixed top-0 overflow-y-auto transition duration-300 ease-in-out ${open ? "translate-x-0" : "-translate-x-full"
+            <Card className={`h-[100vh] md:w-full max-w-[20rem] p-4 z-20 mt-20 font-link shadow-xl shadow-blue-gray-900/5 fixed top-0 overflow-y-auto transition duration-300 ease-in-out ${open ? "translate-x-0" : "-translate-x-full"
                 }`}>
-                <div className="mb-2 p-4 ml-24">
-                    <img src={logo} className="w-32" alt="Logo" />
-                </div>
                 <List>
                     <ListItem onClick={() => navigateTo('/dashboard')}>
                         <ListItemPrefix>
