@@ -10,7 +10,7 @@ import {
 class AboutComponent extends React.Component{
     render() {
     return (
-      <Card className="mt-6 w-96">
+      <Card className="mt-6 w-96 border">
         <CardBody>
           <Typography variant="h5" color="blue-gray" className="mb-2">
             {this.props.header}

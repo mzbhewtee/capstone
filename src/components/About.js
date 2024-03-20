@@ -7,7 +7,7 @@ function About() {
             <div className="flex flex-col lg:h-auto items-center justify-center pb-16 p-5 md:pr-10 md:pl-10 lg:pr-10 mt-10 lg:mt-10 ">
                 <p className="text-center font-link text-sm md:text-lg mb-1 text-primary">What We Do</p>
                 <h1 className="text-xl md:text-2xl font-link font-bold text-center mb-5">About Us</h1>
-                <div className="md:flex mt-5 md:mt-10 justify-center align-middle space-x-2">
+                <div className="md:flex mt-3 md:mt-5 justify-center align-middle space-x-2">
                     <AboutComponent
                         header="Our Mission"
                         paragraph="Our mission is to provide a platform for renewable energy researchers and engineers to leverage quantum computing to solve complex problems in the renewable energy industry."
