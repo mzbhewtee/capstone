@@ -18,7 +18,7 @@ function Dashboard() {
                             data integration to help you unlock new insights and accelerate the transition to clean energy solutions. </p>
                     </div>
                     <div className="p-8">
-                        <a href="https://quantumrenew.streamlit.app/" target="_blank" rel="noopener noreferrer" className="text-white p-4 rounded-md shadow-md bg-primary">Start Simulation</a>
+                        <a href="https://simulato.streamlit.app/" target="_blank" rel="noopener noreferrer" className="text-white p-4 rounded-md shadow-md bg-primary">Start Simulation</a>
                     </div>
                 </div>
 
