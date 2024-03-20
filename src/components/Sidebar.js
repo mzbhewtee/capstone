@@ -63,13 +63,13 @@ export function Sidebar() {
 
     return (
         <>
-            <div className="flex justify-between items-center md:mr-10 md:ml-10 font-link">
-                <div className="z-30 p-9 fixed">
+            <div className="flex justify-between items-center md:mr-10 md:ml-10 mt-5 md:mt-10 font-link">
+                <div className="z-30 p-5 fixed rounded-full bg-primary/10 backdrop-blur-sm">
                     <button
                         onClick={() => setOpen(!open)}
                         aria-label="Toggle sidebar" // Accessibility improvement
                     >
-                        {open ? <XMarkIcon className="h-8 w-8 text-blue-gray-800" /> : <Bars3Icon className="h-8 w-8 text-blue-gray-800" />}
+                        {open ? <XMarkIcon className="h-8 w-8 text-primary" /> : <Bars3Icon className="h-8 w-8 text-primary" />}
                     </button>
                 </div>
                 <div className="p-4 ml-auto mr-6"> {/* 'ml-auto' moves the search input to the right */}
