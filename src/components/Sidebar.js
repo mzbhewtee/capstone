@@ -64,7 +64,7 @@ export function Sidebar() {
     return (
         <>
             <div className="flex justify-between items-center md:mr-10 md:ml-10 font-link">
-                <div className="z-20 p-10">
+                <div className="z-30 p-9 fixed">
                     <button
                         onClick={() => setOpen(!open)}
                         aria-label="Toggle sidebar" // Accessibility improvement
@@ -72,7 +72,7 @@ export function Sidebar() {
                         {open ? <XMarkIcon className="h-8 w-8 text-blue-gray-800" /> : <Bars3Icon className="h-8 w-8 text-blue-gray-800" />}
                     </button>
                 </div>
-                <div className="ml-4 p-4 mr-6">
+                <div className="p-4 ml-auto mr-6"> {/* 'ml-auto' moves the search input to the right */}
                     <div className="relative md:w-72 w-48">
                         <Input
                             type="text"
@@ -87,9 +87,9 @@ export function Sidebar() {
                         />
                     </div>
                 </div>
-
             </div>
-            <Card className={`h-[100vh] md:w-full max-w-[20rem] p-4 font-link shadow-xl shadow-blue-gray-900/5 fixed top-0 overflow-y-auto transition duration-300 ease-in-out ${open ? "translate-x-0" : "-translate-x-full"
+
+            <Card className={`h-[100vh] md:w-full max-w-[20rem] p-4 z-20 font-link shadow-xl shadow-blue-gray-900/5 fixed top-0 overflow-y-auto transition duration-300 ease-in-out ${open ? "translate-x-0" : "-translate-x-full"
                 }`}>
                 <div className="mb-2 p-4 ml-24">
                     <img src={logo} className="w-32" alt="Logo" />

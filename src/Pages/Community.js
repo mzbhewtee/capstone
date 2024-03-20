@@ -8,6 +8,7 @@ import Post from "../components/Post";
 import Posts from "../components/Posts";
 import { db, auth } from "../firebase"; // Import auth and db from Firebase
 import { collection, query, orderBy, getDocs, onSnapshot, doc, setDoc, deleteDoc } from "firebase/firestore"; // Import Firestore functions
+import Twitterposts from "../components/Twitterposts";
 
 function Community() {
     const [posts, setPosts] = useState([]);
@@ -49,9 +50,16 @@ function Community() {
 
     return (
         <div className="font-link">
-            <Sidebar /> 
-            <Post /> {/* Add the Post component */}
-            <Posts posts={posts} /> {/* Pass the fetched posts as props */}
+            <Sidebar />
+            <div className="flex">
+                <div>
+                    <Post /> {/* Add the Post component */}
+                    <Posts posts={posts} /> {/* Pass the fetched posts as props */}
+                </div>
+                <Twitterposts />
+            </div>
+
+
         </div>
     );
 }

@@ -18,7 +18,7 @@ function Dashboard() {
                             data integration to help you unlock new insights and accelerate the transition to clean energy solutions. </p>
                     </div>
                     <div className="p-8">
-                        <button className="bg-primary hover:shadow-md text-white text-sm py-4 px-4 rounded-xl md:mt-4">Start Simulation</button>
+                        <a href="https://quantumrenew.streamlit.app/" target="_blank" rel="noopener noreferrer" className="text-white p-4 rounded-md shadow-md bg-primary">Start Simulation</a>
                     </div>
                 </div>
 
@@ -30,18 +30,21 @@ function Dashboard() {
                         header="Azure Quantum"
                         paragraph="Run sophisticated quantum simulations tailored to any aspect, including renewable energy applications."
                         linkUrl="https://quantum.microsoft.com/en-us/experience/quantum-coding"
+                        info="Start Simulation"
                     />
                     <SimulatorComp
                         image={ibm}
                         header="IBM Quantum"
                         paragraph="Run sophisticated quantum simulations tailored to any aspect, including renewable energy applications."
                         linkUrl="https://quantum-computing.ibm.com/"
+                        info="Learn More"
                     />
                     <SimulatorComp
                         image={google}
                         header="Quantum AI"
                         paragraph="Run sophisticated quantum simulations tailored to any aspect, including renewable energy applications."
                         linkUrl="https://quantumai.google/"
+                        info="Learn More"
                     />
                 </div>
                 <p className="text-md font-bold ml-10 mt-10">QuantumRenew News</p>

@@ -26,7 +26,7 @@ class SimulatorComp extends React.Component {
                     </Typography>
                 </CardBody>
                 <CardFooter className="pt-2 mb-5">
-                    <a href={this.props.linkUrl}className="text-sm text-white p-4 rounded-md shadow-md bg-primary">Start Simulation</a>
+                    <a href={this.props.linkUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-white p-4 rounded-md shadow-md bg-primary">{this.props.info}</a>
                 </CardFooter>
             </Card>
         );
