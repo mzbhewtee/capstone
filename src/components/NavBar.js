@@ -32,9 +32,12 @@ function Navbar() {
     }
 
     return (
-        <nav className="overflow-hidden z-30 fixed shadow-md w-full bg-white">
+        <nav className="fixed z-30 shadow-md w-full bg-white">
             <div className='flex justify-between items-center p-7 lg:pt-10 lg:pb-7 lg:pl-10 lg:pr-10 shadow-md'>
-                <img src={Logo} alt='Quantum Renew' className='w-24 lg:w-32 md:w-32 cursor-pointer' />
+                <div className='flex items-center space-x-2'>
+                    <img src={Logo} alt='Quantum Renew' className='w-3 lg:w-6 md:w-5 cursor-pointer' />
+                    <p className='text-primary font-thin text-sm lg:text-md font-link cursor-pointer'>QuantumRenew</p>
+                </div>
                 <div className='hidden lg:flex items-center space-x-10'>
                     <Link
                         to='about-section'

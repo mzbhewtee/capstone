@@ -8,8 +8,11 @@ function Footer() {
         <div id='contact-section'>
             <div className='border-t border-primary pl-6 pr-6 pb-6 md:flex md:flex-row md:p-6'>
                 <div className='md:w-1/3 md:ml-10'>
-                    <img src={Logo} alt='Medi-Run' className='w-24 md:w-32 cursor-pointer mt-5 mb-3' />
-                    <p className='text-pText text-justify text-xs md:text-sm'>Empower researchers, engineers, and stakeholders in the renewable energy sector with advanced simulation tools to accelerate innovation and drive sustainability.</p>
+                <div className='flex items-center space-x-2'>
+                    <img src={Logo} alt='Quantum Renew' className='w-3 lg:w-6 md:w-5 cursor-pointer' />
+                    <p className='text-primary font-thin text-sm lg:text-md font-link cursor-pointer'>QuantumRenew</p>
+                </div>
+                    <p className='text-pText text-justify mt-3 text-xs md:text-sm'>Empower researchers, engineers, and stakeholders in the renewable energy sector with advanced simulation tools to accelerate innovation and drive sustainability.</p>
                 </div>
                 <div className='flex justify-center mt-5 md:w-2/3 md:justify-end'>
                     <div className='flex justify-around'>

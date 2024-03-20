@@ -8,7 +8,7 @@ import { FrequentlyAskedQuestions } from "../components/FrequentlyAskedQuestions
 
 function Landing() {
     return (
-        <div className="md:mr-10 md:ml-10 font-link">
+        <div className="font-link">
             < Navbar />
             < HeroSection />
             < Features />
