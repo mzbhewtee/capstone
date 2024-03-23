@@ -7,10 +7,12 @@ import Dashboard from './Pages/Dashboard';
 import Education from './Pages/Education';
 import Community from './Pages/Community';
 import Notification from './Pages/Notification';
-import { AuthProvider } from './context/authContext'; // Update the path to authContext
+import { AuthProvider } from './context/authContext'; 
 import Settings from './Pages/Settings';
 import Profile from './Pages/Profile';
-import EditProfile from './Pages/EditProfile'; // Make sure this import is correct
+import EditProfile from './Pages/EditProfile'; 
+import AddNews from './components/AddNews';
+import NewsPage from './Pages/NewsPage';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path='/settings' element={<Settings />} />
           <Route path='/profile/:uid' element={<Profile />} />
           <Route path='/profile/edit/:uid' element={<EditProfile />} /> {/* Ensure this route captures the uid parameter */}
+          <Route path='/admin' element={<AddNews />} />
+          <Route path='/news/:id' element={<NewsPage />} />
           <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>
       </AuthProvider>

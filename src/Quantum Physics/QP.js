@@ -12,8 +12,63 @@ import InterpretationofQuantumMechanics from "./InterpretationofQuantumMechanics
 import ExperimentalBasis from "./ExperimentalBasis";
 import AdvancedTopics from "./AdvancedTopics";
 import image1 from "../assets/images/qp.jpg";
+import Quiz from "../components/Quiz";
 
-function QP() {
+const QP = () => {
+    const questions = [
+        {
+            text: 'What is the significance of the Schrödinger Equation in quantum mechanics?',
+            options: [
+                'It describes the behavior of particles in classical mechanics.',
+                'It provides a mathematical framework for predicting the evolution of quantum systems.',
+                'It explains the phenomenon of wave-particle duality.',
+                'It determines the energy levels of atoms in a crystal lattice.'
+            ],
+            correctAnswer: 'It provides a mathematical framework for predicting the evolution of quantum systems.'
+        },
+        {
+            text: 'What is entanglement in the context of quantum systems?',
+            options: [
+                'It refers to the process of observing quantum particles without disturbing their states.',
+                'It describes the behavior of particles at absolute zero temperature.',
+                'It involves the correlation between the states of two or more particles, even when separated by large distances.',
+                'It explains the transition of particles between different energy levels.'
+            ],
+            correctAnswer: 'It involves the correlation between the states of two or more particles, even when separated by large distances.'
+        },
+        {
+            text: 'Which experiment demonstrates the wave-particle duality of matter?',
+            options: [
+                "Young's double-slit experiment",
+                'Michelson-Morley experiment',
+                'Millikan oil-drop experiment',
+                "Rutherford's gold foil experiment"
+            ],
+            correctAnswer: "Young's double-slit experiment"
+        },
+        {
+            text: 'What is the role of quantum operators in quantum mechanics?',
+            options: [
+                'They represent physical observables, such as position and momentum.',
+                'They control the behavior of classical mechanical systems.',
+                'They determine the boundary conditions of wave functions.',
+                'They describe the interaction between particles and fields.'
+            ],
+            correctAnswer: 'They represent physical observables, such as position and momentum.'
+        },
+        {
+            text: 'How does quantum mechanics differ from classical mechanics in describing the behavior of particles?',
+            options: [
+                'Quantum mechanics is deterministic, while classical mechanics is probabilistic.',
+                'Quantum mechanics predicts precise trajectories of particles, while classical mechanics only provides statistical descriptions.',
+                'Quantum mechanics introduces uncertainty and wave-particle duality, which are absent in classical mechanics.',
+                'Quantum mechanics relies solely on Newton\'s laws of motion, whereas classical mechanics incorporates principles of relativity.'
+            ],
+            correctAnswer: 'Quantum mechanics introduces uncertainty and wave-particle duality, which are absent in classical mechanics.'
+        }
+    ];
+
+
     return (
         <div className="font-link">
             <h2 className="font-bold text-center text-3xl">Quantum Physics</h2>
@@ -28,19 +83,19 @@ function QP() {
                         Welcome to the fascinating world of quantum physics! In this section, we will embark on a journey to explore the fundamental principles and phenomena that govern the behavior of particles at the smallest scales of the universe. Quantum physics, also known as quantum mechanics, is a captivating field of study that delves into the mysteries of matter and energy at their most fundamental level.
                     </p>
                     <p className="mt-2 md:ml-10 text-lg text-justify"> Throughout our exploration, you will discover the following key concepts: </p>
-                    
+
                 </div>
 
 
             </div>
             <ul className="mt-2 md:ml-10 text-lg list-disc list-inside">
-            <li>Classical Mechanics vs. Quantum Mechanics</li>
-                        <li>Mathematical Foundation of Quantum Mechanics</li>
-                        <li>Wave Mechanics and Quantum Theory Postulates</li>
-                        <li>Introduction to the Schrödinger Equation</li>
-                        <li>Quantum Operators and Observables</li>
-                        <li>Quantum States and Wavefunctions</li>
-                        <li>Quantum Systems and Entanglement</li>
+                <li>Classical Mechanics vs. Quantum Mechanics</li>
+                <li>Mathematical Foundation of Quantum Mechanics</li>
+                <li>Wave Mechanics and Quantum Theory Postulates</li>
+                <li>Introduction to the Schrödinger Equation</li>
+                <li>Quantum Operators and Observables</li>
+                <li>Quantum States and Wavefunctions</li>
+                <li>Quantum Systems and Entanglement</li>
                 <li>Interpretation of Quantum Mechanics</li>
                 <li>Experimental Basis of Quantum Physics</li>
                 <li>Advanced Topics in Quantum Physics</li>
@@ -58,6 +113,8 @@ function QP() {
                 Imagine a machine gun firing bullets at a wall with two parallel slits. If we block one slit, the bullets create a probability distribution curve (let’s call it P1). If we block the other slit, the curve is mirrored around the center (P2). When both slits are open, the total probability distribution P is the sum of P1 and P2.
                 <br></br>Now, consider the same experiment with electrons. At the very small scale, quantum mechanics takes over. Unlike classical mechanics, where everything is deterministic, quantum mechanics only allows us to determine probabilities. Electrons exhibit wave-like behavior, creating interference patterns when passing through the slits. The result is vastly different from the classical bullet scenario2.
             </p>
+
+            <Quiz questions={questions} />
 
             <div className="mt-10 mb-10 h-0.5 w-full bg-primary"></div>
             < ClassicalMechanics />

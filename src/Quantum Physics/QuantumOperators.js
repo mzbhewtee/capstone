@@ -1,7 +1,61 @@
 import React from "react";
 import image from '../assets/images/qo.jpeg'
+import Quiz from "../components/Quiz";
 
 const QuantumOperators = () => {
+    const questions = [
+        {
+            text: 'What do quantum operators represent in quantum mechanics?',
+            options: [
+                'Physical observables',
+                'Mathematical constants',
+                'Wavefunctions',
+                'Energy levels'
+            ],
+            correctAnswer: 'Physical observables'
+        },
+        {
+            text: 'Which operator represents the observable of position in quantum mechanics?',
+            options: [
+                'Momentum operator',
+                'Hamiltonian operator',
+                'Position operator',
+                'Angular momentum operator'
+            ],
+            correctAnswer: 'Position operator'
+        },
+        {
+            text: 'What is the uncertainty principle?',
+            options: [
+                'Every particle has a wave associated with it',
+                'Two non-commuting observables cannot be simultaneously measured with arbitrary precision',
+                'Particles can exist in multiple states simultaneously',
+                'The total energy of a system is conserved'
+            ],
+            correctAnswer: 'Two non-commuting observables cannot be simultaneously measured with arbitrary precision'
+        },
+        {
+            text: 'What mathematical property indicates that two operators do not commute?',
+            options: [
+                'Commutative property',
+                'Distributive property',
+                'Associative property',
+                'Commutator'
+            ],
+            correctAnswer: 'Commutator'
+        },
+        {
+            text: 'What do eigenvalue equations in quantum mechanics yield?',
+            options: [
+                'Wavefunctions',
+                'Operators',
+                'Eigenstates and eigenvalues',
+                'Commutators'
+            ],
+            correctAnswer: 'Eigenstates and eigenvalues'
+        }
+    ];
+
     return (
         <div id='Quantum Operators'>
             <h2 className="font-bold text-center text-3xl">Quantum Operators</h2>
@@ -38,8 +92,9 @@ const QuantumOperators = () => {
             </p>
             <p className='mt-2 text-lg text-justify'>These are just a few fundamental concepts related to quantum operators in quantum mechanics. The use of operators allows us to formulate and solve the Schrödinger equation, analyze quantum systems, and make predictions about their behavior and properties.
             </p>
-            </div>
-            );
-    };
+            <Quiz questions={questions} />
+        </div>
+    );
+};
 
-            export default QuantumOperators;
+export default QuantumOperators;

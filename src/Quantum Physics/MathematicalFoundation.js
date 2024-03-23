@@ -1,6 +1,60 @@
 import React from 'react';
+import Quiz from '../components/Quiz';
 
 const MathematicalFoundation = () => {
+    const questions = [
+        {
+            text: 'What branch of mathematics deals with vector spaces and linear mappings?',
+            options: [
+                'Calculus',
+                'Differential Equations',
+                'Probability Theory',
+                'Linear Algebra'
+            ],
+            correctAnswer: 'Linear Algebra'
+        },
+        {
+            text: 'Which mathematical concept is heavily relied upon in quantum mechanics to represent physical systems and their properties?',
+            options: [
+                'Integration',
+                'Derivatives',
+                'Matrices',
+                'Functions'
+            ],
+            correctAnswer: 'Matrices'
+        },
+        {
+            text: 'What is the probability density function used for in quantum mechanics?',
+            options: [
+                'To calculate the probability of finding a particle in a given interval',
+                'To determine the derivative of a wave function',
+                'To solve differential equations',
+                'To calculate the expectation value of an observable'
+            ],
+            correctAnswer: 'To calculate the probability of finding a particle in a given interval'
+        },
+        {
+            text: 'Which branch of mathematics deals with rates of change and accumulation?',
+            options: [
+                'Linear Algebra',
+                'Calculus',
+                'Probability Theory',
+                'Differential Equations'
+            ],
+            correctAnswer: 'Calculus'
+        },
+        {
+            text: 'What concept describes how quantities change over time or space in mathematics?',
+            options: [
+                'Integration',
+                'Derivatives',
+                'Matrices',
+                'Functions'
+            ],
+            correctAnswer: 'Derivatives'
+        }
+    ];
+
     return (
         <div id='Mathematical Foundations'>
             <h2 className='font-bold text-center text-3xl'>Mathematical Foundation</h2>
@@ -22,7 +76,7 @@ const MathematicalFoundation = () => {
             <p>
                 Consider the following system of linear equations:
                 <b><br></br>2x + y = 5
-                <br></br> x - 3y = -2</b>
+                    <br></br> x - 3y = -2</b>
                 <li>Solve the system of equations using the method of your choice (e.g., substitution, elimination).
                 </li>
                 <li>Determine whether the system has a unique solution, infinitely many solutions, or no solution.
@@ -36,15 +90,15 @@ const MathematicalFoundation = () => {
                 <b><br></br>x = 3y - 2</b>
                 <br></br>Next, we can substitute this expression for x into the first equation:
                 <b><br></br>2(3y - 2) + y = 5
-                <br></br>6y - 4 + y = 5
-                <br></br>7y - 4 = 5
-                <br></br>7y = 9
-                <br></br>y = 9/7</b>
+                    <br></br>6y - 4 + y = 5
+                    <br></br>7y - 4 = 5
+                    <br></br>7y = 9
+                    <br></br>y = 9/7</b>
                 <br></br>Now that we have found the value of y, we can substitute it back into the expression for x:
                 <b><br></br>x = 3(9/7) - 2
-                <br></br>x = 27/7 - 2
-                <br></br>x = 27/7 - 14/7
-                <br></br>x = 13/7</b>
+                    <br></br>x = 27/7 - 2
+                    <br></br>x = 27/7 - 14/7
+                    <br></br>x = 13/7</b>
                 <br></br>Therefore, the system of linear equations has a unique solution:
                 <b><br></br>x = 13/7 and y = 9/7</b>
             </p>
@@ -71,11 +125,11 @@ const MathematicalFoundation = () => {
                 <b><br></br>f'(x) = 2x + 3</b>
                 <br></br>Next, we can set the derivative equal to zero to find the critical points:
                 <b><br></br>2x + 3 = 0
-                <br></br>2x = -3
-                <br></br>x = -3/2</b>
+                    <br></br>2x = -3
+                    <br></br>x = -3/2</b>
                 <br></br>Now that we have found the critical point, we can test the intervals around it to determine where the function is increasing or decreasing:
                 <b><br></br>For x less than -3/2, f'(x) less than 0, so the function is decreasing.
-                <br></br>For x greater than -3/2, f'(x) greater than 0, so the function is increasing.</b>
+                    <br></br>For x greater than -3/2, f'(x) greater than 0, so the function is increasing.</b>
                 <br></br>Therefore, the critical point <b>x = -3/2</b> corresponds to a local minimum of the function.
             </p>
             <h3 className='font-bold mt-4 text-xl'>Differential Equations</h3>
@@ -99,17 +153,17 @@ const MathematicalFoundation = () => {
             <p>
                 To solve the first-order linear differential equation <b>dy/dx + 2y = 4x</b>, we can use an integrating factor to simplify the equation:
                 <b><br></br>Multiplying both sides of the equation by the integrating factor e^(∫2dx), we get:
-                <br></br>e^(∫2dx) * dy/dx + 2e^(∫2dx) * y = 4x * e^(∫2dx)</b>
+                    <br></br>e^(∫2dx) * dy/dx + 2e^(∫2dx) * y = 4x * e^(∫2dx)</b>
                 <br></br>Next, we can recognize the left-hand side of the equation as the derivative of the product e^(∫2dx) * y with respect to x:
                 <b><br></br>d/dx(e^(∫2dx) * y) = 4x * e^(∫2dx)</b>
                 <br></br>Integrating both sides of the equation with respect to x, we obtain the general solution:
                 <b><br></br>e^(∫2dx) * y = ∫4x * e^(∫2dx) dx + C
-                <br></br>y = e^(-2x) * (∫4x * e^(2x) dx + C)</b>
+                    <br></br>y = e^(-2x) * (∫4x * e^(2x) dx + C)</b>
                 <br></br>Now that we have found the general solution, we can determine the particular solution that satisfies the initial condition <b>y(0) = 3</b>:
                 <b><br></br>When x = 0, the particular solution becomes:
-                <br></br>y(0) = e^0 * (∫4(0) * e^0 dx + C)
-                <br></br>3 = 1 * (0 + C)
-                <br></br>C = 3</b>
+                    <br></br>y(0) = e^0 * (∫4(0) * e^0 dx + C)
+                    <br></br>3 = 1 * (0 + C)
+                    <br></br>C = 3</b>
                 <br></br>Therefore, the particular solution that satisfies the initial condition is:
                 <b><br></br>y = e^(-2x) * (∫4x * e^(2x) dx + 3)</b>
             </p>
@@ -133,15 +187,15 @@ const MathematicalFoundation = () => {
             <p>
                 To determine the probability density function for the wave function <b>ψ(x) = A * e^(-x^2/2σ^2)</b>, we can calculate the square of the absolute value of the wave function:
                 <b><br></br>|ψ(x)|^2 = |A * e^(-x^2/2σ^2)|^2
-                <br></br>= |A|^2 * |e^(-x^2/2σ^2)|^2
-                <br></br>= |A|^2 * e^(-x^2/σ^2)</b>
+                    <br></br>= |A|^2 * |e^(-x^2/2σ^2)|^2
+                    <br></br>= |A|^2 * e^(-x^2/σ^2)</b>
                 <br></br>Next, we can normalize the probability density function by integrating it over all space:
                 <b><br></br>∫|ψ(x)|^2 dx = 1
-                <br></br>∫|A|^2 * e^(-x^2/σ^2) dx = 1</b>
+                    <br></br>∫|A|^2 * e^(-x^2/σ^2) dx = 1</b>
                 <br></br>Now that we have found the probability density function, we can calculate the probability of finding the particle in the interval <b>x = [-a, a]</b>:
                 <b><br></br>P(-a ≤ x ≤ a) = ∫|ψ(x)|^2 dx
-                <br></br>= ∫|A|^2 * e^(-x^2/σ^2) dx
-                <br></br>= |A|^2 * ∫e^(-x^2/σ^2) dx</b>
+                    <br></br>= ∫|A|^2 * e^(-x^2/σ^2) dx
+                    <br></br>= |A|^2 * ∫e^(-x^2/σ^2) dx</b>
                 <br></br>Therefore, the probability of finding the particle in the interval <b>x = [-a, a]</b> is given by the integral of the probability density function over the specified interval.
             </p>
             <h3 className='font-bold mt-4 text-xl'>Conclusion</h3>
@@ -151,6 +205,7 @@ const MathematicalFoundation = () => {
             <p className='text-lg text-justify'>
                 By mastering the mathematical concepts and techniques underlying quantum mechanics, physicists can gain a deeper understanding of the fundamental principles governing the behavior of particles at the quantum level.
             </p>
+            <Quiz questions={questions} />
         </div>
     );
 };

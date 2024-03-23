@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Sidebar } from "../components/Sidebar";
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
 import SimulatorComp from "../components/SimulatorsComp";
 import microsoft from "../assets/images/microsoft.png";
 import ibm from "../assets/images/ibm.jpeg";
@@ -7,6 +9,34 @@ import google from "../assets/images/google.jpeg";
 import News from "../components/News";
 
 function Dashboard() {
+
+    const [news, setNews] = useState([]);
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            try {
+                const newsCollection = collection(db, 'news');
+                const newsSnapshot = await getDocs(newsCollection);
+                const newsData = newsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+                // Sort news by timestamp in descending order (latest first)
+                const sortedNews = newsData.sort((a, b) => b.timestamp - a.timestamp);
+
+                // Format timestamp to include day and month
+                const formattedNews = sortedNews.map(item => {
+                    const date = item.timestamp.toDate();
+                    const formattedDate = `${date.toLocaleDateString('en-US', { month: 'long' })} ${date.getDate()}`;
+                    return { ...item, formattedDate };
+                });
+
+                setNews(formattedNews);
+            } catch (error) {
+                console.error('Error fetching news:', error);
+            }
+        }
+        fetchNews();
+    }, []);
+
     return (
         <div className="">
             < Sidebar />
@@ -50,21 +80,14 @@ function Dashboard() {
                 <p className="text-md font-bold ml-10 mt-10">QuantumRenew News</p>
                 <h3 className="text-md font-extralight ml-10 mb-10">Stay updated with the latest news and updates on QuantumRenew</h3>
                 <div className="justify-around ml-10 mr-10">
-                    <News
-                        header="Quantum Computing: The Next Big Thing in Renewable Energy"
-                        paragraph="Quantum computing has the potential to revolutionize the renewable energy sector. It can help in optimizing renewable energy systems and drive sustainable innovation."
-                        linkUrl="https://quantum.microsoft.com/en-us/experience/quantum-coding"
-                    />
-                    <News
-                        header="Quantum Computing: The Next Big Thing in Renewable Energy"
-                        paragraph="Quantum computing has the potential to revolutionize the renewable energy sector. It can help in optimizing renewable energy systems and drive sustainable innovation."
-                        linkUrl="https://quantum.microsoft.com/en-us/experience/quantum-coding"
-                    />
-                    <News
-                        header="Quantum Computing: The Next Big Thing in Renewable Energy"
-                        paragraph="Quantum computing has the potential to revolutionize the renewable energy sector. It can help in optimizing renewable energy systems and drive sustainable innovation."
-                        linkUrl="https://quantum.microsoft.com/en-us/experience/quantum-coding"
-                    />
+                {news.map(item => (
+                        <News
+                            key={item.id}
+                            header={`${item.header} - ${item.formattedDate}`} // Include formatted date in the header
+                            paragraph={item.paragraph}
+                            linkUrl={`/news/${item.id}`}
+                        />
+                    ))}
                 </div>
 
             </div>

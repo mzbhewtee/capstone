@@ -1,7 +1,61 @@
 import React from "react";
 import image1 from "../assets/images/wm.jpg";
+import Quiz from "../components/Quiz";
 
 const WaveMechanics = () => {
+    const questions = [
+        {
+            text: 'Who developed wave mechanics as an alternative formulation to describe the wave-like nature of particles?',
+            options: [
+                'Albert Einstein',
+                'Niels Bohr',
+                'Werner Heisenberg',
+                'Erwin Schrödinger'
+            ],
+            correctAnswer: 'Erwin Schrödinger'
+        },
+        {
+            text: 'Which mathematical equation governs the dynamics of wave functions in wave mechanics?',
+            options: [
+                'Newton\'s Second Law',
+                'Euler\'s Equation',
+                'Maxwell\'s Equations',
+                'Schrödinger Equation'
+            ],
+            correctAnswer: 'Schrödinger Equation'
+        },
+        {
+            text: 'What is the interpretation of the wavefunction according to wave mechanics?',
+            options: [
+                'Deterministic',
+                'Probabilistic',
+                'Constant',
+                'Chaotic'
+            ],
+            correctAnswer: 'Probabilistic'
+        },
+        {
+            text: 'What phenomenon reflects the probabilistic nature of quantum mechanics and the role of observation in determining the state of a system?',
+            options: [
+                'Wavefunction Collapse',
+                'Superposition',
+                'Entanglement',
+                'Wave-Particle Duality'
+            ],
+            correctAnswer: 'Wavefunction Collapse'
+        },
+        {
+            text: 'In which scientific field does wave mechanics provide insights into the structure and behavior of atoms and molecules?',
+            options: [
+                'Astrophysics',
+                'Geology',
+                'Atomic and Molecular Physics',
+                'Fluid Dynamics'
+            ],
+            correctAnswer: 'Atomic and Molecular Physics'
+        }
+    ];
+
     return (
         <div id='Wave Mechanics'>
             <h2 className="font-bold text-center text-3xl">Wave Mechanics</h2>
@@ -72,6 +126,7 @@ const WaveMechanics = () => {
             <li className="mt-2 text-lg text-justify">Quantum Optics: Wave mechanics plays a central role in quantum optics, the study of the interaction between light and matter at the quantum level. It explains phenomena such as photon interference, quantum teleportation, and quantum cryptography, which have implications for communication and information processing.</li>
 
             <p className='mt-2 text-lg text-justify'>In summary, wave mechanics is a fundamental framework in quantum physics that describes the wave-like behavior of particles and provides a powerful tool for understanding and predicting quantum phenomena. Its mathematical formalism and probabilistic interpretation have led to significant advancements in various scientific fields and technologies.</p>
+            <Quiz questions={questions} />
         </div>
     );
 };

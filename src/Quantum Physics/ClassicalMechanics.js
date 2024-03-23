@@ -1,7 +1,61 @@
 import React from 'react';
 import image1 from '../assets/images/cm.jpg'
+import Quiz from '../components/Quiz';
 
 const ClassicalMechanics = () => {
+    const questions = [
+        {
+          text: 'What is the first law of motion according to Newton?',
+          options: [
+            'An object at rest will remain at rest, and an object in motion will remain in motion at a constant velocity unless acted upon by an external force.',
+            'The acceleration of an object is directly proportional to the net force acting upon it and inversely proportional to its mass.',
+            'For every action, there is an equal and opposite reaction.',
+            'The principle of conservation of energy states that energy cannot be created or destroyed, only transformed from one form to another.'
+          ],
+          correctAnswer: 'An object at rest will remain at rest, and an object in motion will remain in motion at a constant velocity unless acted upon by an external force.'
+        },
+        {
+          text: 'What does Newton’s second law of motion state?',
+          options: [
+            'An object at rest will remain at rest, and an object in motion will remain in motion at a constant velocity unless acted upon by an external force.',
+            'The acceleration of an object is directly proportional to the net force acting upon it and inversely proportional to its mass.',
+            'For every action, there is an equal and opposite reaction.',
+            'The principle of conservation of energy states that energy cannot be created or destroyed, only transformed from one form to another.'
+          ],
+          correctAnswer: 'The acceleration of an object is directly proportional to the net force acting upon it and inversely proportional to its mass.'
+        },
+        {
+          text: 'What is the third law of motion?',
+          options: [
+            'An object at rest will remain at rest, and an object in motion will remain in motion at a constant velocity unless acted upon by an external force.',
+            'The acceleration of an object is directly proportional to the net force acting upon it and inversely proportional to its mass.',
+            'For every action, there is an equal and opposite reaction.',
+            'The principle of conservation of energy states that energy cannot be created or destroyed, only transformed from one form to another.'
+          ],
+          correctAnswer: 'For every action, there is an equal and opposite reaction.'
+        },
+        {
+          text: 'What does the principle of conservation of energy state?',
+          options: [
+            'An object at rest will remain at rest, and an object in motion will remain in motion at a constant velocity unless acted upon by an external force.',
+            'The acceleration of an object is directly proportional to the net force acting upon it and inversely proportional to its mass.',
+            'For every action, there is an equal and opposite reaction.',
+            'Energy cannot be created or destroyed, only transformed from one form to another.'
+          ],
+          correctAnswer: 'Energy cannot be created or destroyed, only transformed from one form to another.'
+        },
+        {
+          text: 'What is the principle of conservation of momentum?',
+          options: [
+            'The total momentum of an isolated system remains constant over time.',
+            'The acceleration of an object is directly proportional to the net force acting upon it and inversely proportional to its mass.',
+            'For every action, there is an equal and opposite reaction.',
+            'Energy cannot be created or destroyed, only transformed from one form to another.'
+          ],
+          correctAnswer: 'The total momentum of an isolated system remains constant over time.'
+        }
+    ];
+    
     return (
         <div id='Classical Mechanics'>
             <h2 className="font-bold text-center text-3xl">Classical Mechanics</h2>
@@ -84,6 +138,7 @@ const ClassicalMechanics = () => {
             <p className='text-lg text-justify'>Rotational motion is a fundamental concept in physics that describes the motion of objects around a fixed axis. This concept is essential in understanding the behavior of rotating objects and the forces that act upon them.
             It provides a fundamental framework for describing the behavior of physical systems that exhibit rotational motion.
             </p>
+            <Quiz questions={questions} />
         </div>
     );
 };

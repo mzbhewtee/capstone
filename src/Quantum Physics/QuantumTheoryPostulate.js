@@ -1,8 +1,62 @@
 import React from "react";
 import image1 from "../assets/images/qtp.jpg";
 import image2 from "../assets/images/qtp2.jpg";
+import Quiz from "../components/Quiz";
 
 const QuantumTheoryPostulate = () => {
+    const questions = [
+        {
+            text: 'What mathematical entity describes the state of a quantum mechanical system?',
+            options: [
+                'Vector',
+                'Scalar',
+                'Function',
+                'Wavefunction'
+            ],
+            correctAnswer: 'Wavefunction'
+        },
+        {
+            text: 'What principle in quantum mechanics allows quantum systems to exist in multiple states simultaneously?',
+            options: [
+                'Uncertainty Principle',
+                'Wave-Particle Duality',
+                'Quantum Superposition',
+                'Complementarity Principle'
+            ],
+            correctAnswer: 'Quantum Superposition'
+        },
+        {
+            text: 'What equation governs the time evolution of a quantum system?',
+            options: [
+                'Newton\'s Second Law',
+                'Euler\'s Equation',
+                'Maxwell\'s Equations',
+                'Schrödinger Equation'
+            ],
+            correctAnswer: 'Schrödinger Equation'
+        },
+        {
+            text: 'What phenomenon describes the correlation between the quantum states of two or more particles?',
+            options: [
+                'Wavefunction Collapse',
+                'Quantum Entanglement',
+                'Superposition',
+                'Measurement Problem'
+            ],
+            correctAnswer: 'Quantum Entanglement'
+        },
+        {
+            text: 'What rule states that the probability density of finding a system in a particular state is proportional to the square of the absolute value of the wavefunction?',
+            options: [
+                'Pauli Exclusion Principle',
+                'Born Rule',
+                'Heisenberg Uncertainty Principle',
+                'Fermi-Dirac Statistics'
+            ],
+            correctAnswer: 'Born Rule'
+        }
+    ];
+
     return (
         <div id='Quantum Theory Postulate'>
             <h2 className="font-bold text-center text-3xl">Quantum Theory Postulate</h2>
@@ -47,11 +101,11 @@ const QuantumTheoryPostulate = () => {
                 <div className="md:w-2/3 ml-5">
                     <h4 className="font-bold mt-4 text-lg">Time Evolution</h4>
                     <p className='mt-2 text-lg text-justify'>
-                    The evolution of a quantum system over time is governed by the time-dependent Schrödinger equation, which describes how the wavefunction changes with time. This equation relates the rate of change of the wavefunction to the Hamiltonian operator, which represents the total energy of the system.
+                        The evolution of a quantum system over time is governed by the time-dependent Schrödinger equation, which describes how the wavefunction changes with time. This equation relates the rate of change of the wavefunction to the Hamiltonian operator, which represents the total energy of the system.
                     </p>
                     <h4 className="font-bold mt-4 text-lg">Quantum Superposition</h4>
                     <p className='mt-2 text-lg text-justify'>
-                    One of the most remarkable features of quantum mechanics is superposition, which allows quantum systems to exist in multiple states simultaneously. According to the principle of superposition, if a system can be in states ψ1 and ψ2, it can also exist in a linear combination of these states: αψ1+βψ2, where α and β are complex numbers representing the probability amplitudes.
+                        One of the most remarkable features of quantum mechanics is superposition, which allows quantum systems to exist in multiple states simultaneously. According to the principle of superposition, if a system can be in states ψ1 and ψ2, it can also exist in a linear combination of these states: αψ1+βψ2, where α and β are complex numbers representing the probability amplitudes.
                     </p>
                 </div>
             </div>
@@ -61,7 +115,7 @@ const QuantumTheoryPostulate = () => {
 
             <p className='mt-5 text-lg text-justify'>These postulates provide the foundation for the mathematical formalism of quantum mechanics and serve as the framework for understanding the behavior of microscopic particles and their interactions. They have been tested and verified through numerous experiments, confirming their validity in describing the peculiar and counterintuitive aspects of the quantum world.</p>
 
-
+            <Quiz questions={questions} />
 
         </div>
     );
