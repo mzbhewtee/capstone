@@ -56,7 +56,7 @@ function Community() {
                     <Post /> {/* Add the Post component */}
                     <Posts posts={posts} /> {/* Pass the fetched posts as props */}
                 </div>
-                <Twitterposts />
+                {/* <Twitterposts /> */}
             </div>
 
 

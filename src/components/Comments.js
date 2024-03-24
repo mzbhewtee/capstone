@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from "../firebase";
-import { collection, query, orderBy, getDocs, doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
+import { collection, query, orderBy, getDocs, doc, getDoc, setDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 
 function AllComments({ postId }) {
     const [comments, setComments] = useState([]);
     const [error, setError] = useState(null);
-    const [commentText, setCommentText] = useState(""); // Define state for comment input
+    const [commentText, setCommentText] = useState("");
+    const [loadMoreCount, setLoadMoreCount] = useState(3); // Initial number of comments to load
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -15,22 +16,21 @@ function AllComments({ postId }) {
                     setError('You must be logged in to view comments.');
                     return;
                 }
-
-                // Make sure postId is not empty
+        
                 if (!postId) {
                     setError('Post ID is required to fetch comments.');
                     return;
                 }
-
+        
                 const commentsCollection = collection(db, `posts/${postId}/comments`);
                 const q = query(commentsCollection, orderBy('createdAt', 'desc'));
                 const querySnapshot = await getDocs(q);
-
+        
                 const commentsData = [];
                 for (const docRef of querySnapshot.docs) {
                     const commentData = docRef.data();
                     // Fetch user data for each comment
-                    const userDoc = await getDoc(doc(db, 'users', commentData.userId));
+                    const userDoc = await getDoc(doc(db, 'users', commentData.userId)); // Corrected here
                     if (userDoc.exists()) {
                         const userData = userDoc.data();
                         commentsData.push({
@@ -43,13 +43,14 @@ function AllComments({ postId }) {
                         });
                     }
                 }
-
+        
                 setComments(commentsData);
             } catch (error) {
                 console.error('Error fetching comments:', error);
                 setError('Failed to fetch comments. Please try again later.');
             }
         };
+        
 
         fetchComments();
     }, [postId]);
@@ -65,12 +66,11 @@ function AllComments({ postId }) {
                     createdAt: serverTimestamp()
                 });
                 setCommentText(""); // Clear the comment text after sending
+                // Update comments state with new comment data
                 setComments(prevComments => [...prevComments, { 
-                    text: commentText, 
-                    user: { 
-                        fullname: user.displayName, // Use displayName instead of fullname
-                        profilePictureURL: user.photoURL // Use photoURL instead of profilePictureURL
-                    }, 
+                    text: commentText,
+                    userId: user.uid,
+                    profilePictureURL: user.photoURL, // Assuming you have profilePictureURL in your users collection
                     createdAt: new Date() 
                 }]);
             }
@@ -78,15 +78,10 @@ function AllComments({ postId }) {
             console.error("Error commenting on post:", error);
         }
     };
-    
-
-    const handleTextAreaChange = (event) => {
-        setCommentText(event.target.value);
-    };
 
     const getTimeDifference = (timestamp) => {
         if (!(timestamp instanceof Date)) {
-            timestamp = timestamp.toDate(); // Convert Firestore Timestamp to Date object
+            timestamp = timestamp.toDate();
         }
 
         const now = new Date();
@@ -102,32 +97,50 @@ function AllComments({ postId }) {
         }
     };
 
+    const handleLoadMore = () => {
+        // Increase loadMoreCount to load more comments
+        setLoadMoreCount(prevCount => prevCount + 3); // Load 3 more comments
+    };
+
+    const handleDeleteComment = async (commentId) => {
+        try {
+            await deleteDoc(doc(db, `posts/${postId}/comments`, commentId));
+            setComments(prevComments => prevComments.filter(comment => comment.id !== commentId));
+        } catch (error) {
+            console.error("Error deleting comment:", error);
+        }
+    };
 
     return (
         <div>
-            <div className="mt-2 mb-4 flex items-center">
-                <textarea
-                    value={commentText}
-                    onChange={handleTextAreaChange}
-                    placeholder="Write your comment..."
-                    className="flex-grow border border-gray-300 rounded-md p-2"
-                />
-                <button onClick={handleComment} className="ml-2 bg-primary hover:shadow-md text-white px-4 py-3 rounded-md">Send</button>
-            </div>
             {error && <p>{error}</p>}
-            {comments.map((comment, index) => (
+            {comments.slice(0, loadMoreCount).map((comment, index) => (
                 <div key={index} className='mb-3'>
                     <div className='flex items-center'>
-                        <img src={comment.user.profilePictureURL} alt="Profile" className="rounded-full w-8 h-8 mr-2" />
+                        {comment.user.profilePictureURL && (
+                            <img src={comment.user.profilePictureURL} alt="Profile" className="rounded-full w-8 h-8 mr-2" />
+                        )}
                         <div>
-                            <p className='text-xs font-bold'>{comment.user.fullname}</p>
-                            <p className='text-xs'>{getTimeDifference(comment.createdAt)}</p>
+                            {comment.user.fullname && (
+                                <>
+                                    <p className='text-xs font-bold'>{comment.user.fullname}</p>
+                                    <p className='text-xs'>{getTimeDifference(comment.createdAt)}</p>
+                                </>
+                            )}
                         </div>
                     </div>
+                    <div className='flex justify-between'>
                     <p className='mt-2 mb-2 text-sm'>{comment.text}</p>
+                    {comment.userId === auth.currentUser.uid && (
+                        <button onClick={() => handleDeleteComment(comment.id)} className="text-sm text-red-500">Delete</button>
+                    )}
+                    </div>
                     <hr />
                 </div>
             ))}
+            {comments.length > loadMoreCount && (
+                <button onClick={handleLoadMore} className="text-blue-900 underline text-sm py-3 rounded-md">Load More</button>
+            )}
         </div>
     );
 }

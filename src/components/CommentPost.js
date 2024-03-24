@@ -1,61 +1,45 @@
-import React, { useState, useEffect } from "react";
-import { BiCommentDetail } from "react-icons/bi";
-import { db, auth } from "../firebase"; // Import Firebase db, auth, and doc
-import { doc, deleteDoc, setDoc, collection, getDocs, getDoc, serverTimestamp } from "firebase/firestore"; // Import Firestore doc and getDoc
+import React, { useState, useEffect } from 'react';
+import { db, auth } from "../firebase";
+import { collection, query, getDocs } from "firebase/firestore";
 
-const CommentPost = ({ postId }) => {
-    const [commented, setCommented] = useState(false);
-    const [commentCount, setCommentCount] = useState(0);
-    const [showTextArea, setShowTextArea] = useState(false);
-    const [commentText, setCommentText] = useState("");
-    const [comments, setComments] = useState([]);
+function AllComments({ postId }) {
+    const [commentsCount, setCommentsCount] = useState(0);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchCommentsCount = async () => {
             try {
-                // Fetch the comments for the post
-                const q = collection(db, `posts/${postId}/comments`);
+                const user = auth.currentUser;
+                if (!user) {
+                    setError('You must be logged in to view comments.');
+                    return;
+                }
+        
+                if (!postId) {
+                    setError('Post ID is required to fetch comments.');
+                    return;
+                }
+        
+                const commentsCollection = collection(db, `posts/${postId}/comments`);
+                const q = query(commentsCollection);
                 const querySnapshot = await getDocs(q);
-                const fetchedComments = [];
-                querySnapshot.forEach((doc) => {
-                    fetchedComments.push({ id: doc.id, ...doc.data() });
-                });
-                setComments(fetchedComments);
-                setCommentCount(querySnapshot.size);
+        
+                setCommentsCount(querySnapshot.size);
             } catch (error) {
-                console.error("Error fetching comment data:", error);
+                console.error('Error fetching comments count:', error);
+                setError('Failed to fetch comments count. Please try again later.');
             }
         };
 
-        fetchData();
+        fetchCommentsCount();
     }, [postId]);
 
-    const handleComment = async () => {
-        try {
-            const user = auth.currentUser;
-            if (user) {
-                const commentDocRef = doc(collection(db, `posts/${postId}/comments`));
-                await setDoc(commentDocRef, {
-                    userId: user.uid,
-                    text: commentText,
-                    createdAt: serverTimestamp()
-                });
-                setCommentText(""); // Clear the comment text after sending
-                setCommentCount((prevCount) => prevCount + 1); // Increment comment count
-            }
-        } catch (error) {
-            console.error("Error commenting on post:", error);
-        }
-    };
-
-
     return (
-        <div className='flex items-center flex-col mt-2 md:mt-5'>
-            
-            <span className={`text-sm md:text-md ${commented ? 'text-primary' : 'text-gray-400'}`} >{commentCount} Comments</span>
-            
+        <div>
+            {error && <p>{error}</p>}
+            <p>{commentsCount} {commentsCount === 1 ? 'comment' : 'comments'}</p>
         </div>
     );
 }
 
-export default CommentPost;
+export default AllComments;
