@@ -42,6 +42,7 @@ const Quiz = ({ questions }) => {
     // Render quiz questions and answers
     return (
         <div className="p-5">
+            <h1 className="text-2xl font-bold mb-5">Quiz</h1>
             {quizCompleted ? (
                 // Render questions and answers if the quiz is completed
                 <div className="border p-3 md:p-5 shadow-md">

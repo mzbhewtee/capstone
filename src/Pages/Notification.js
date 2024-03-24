@@ -19,9 +19,7 @@ function Notification() {
                                     <p className="md:text-sm text-xs">2 hours ago</p>
                                 </div>
                                 <p className=" text-xs md:text-md text-justify">Liked your post</p>
-                
                             </div>
-                            
                         </div>
                         <div className="h-0.5 w-full mt-4 bg-primary/30"></div>
 
