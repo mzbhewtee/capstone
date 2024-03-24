@@ -16,6 +16,7 @@ module.exports = withMT({
       },
       height: {
         "gee": "28rem",
+        "100vh": "80vh",
       },
       width: {
         "norm": "19rem",

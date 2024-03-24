@@ -10,6 +10,7 @@ import { formatDistanceToNow } from 'date-fns';
 import LikePost from "../components/LikePost";
 import CommentPost from "../components/CommentPost";
 import AllComments from "../components/Comments";
+import Twitterposts from "../components/Twitterposts";
 
 function Profile() {
   const { currentUser, loading } = useAuth(); // Access currentUser and loading from context
@@ -191,6 +192,7 @@ function Profile() {
             </div>
           ))}
         </div>
+        <Twitterposts />
       </div>
     
   );

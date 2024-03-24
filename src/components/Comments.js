@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from "../firebase";
 import { collection, query, orderBy, getDocs, doc, getDoc, setDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
+import { FaPaperPlane } from 'react-icons/fa';
+
 
 function AllComments({ postId }) {
     const [comments, setComments] = useState([]);
@@ -16,16 +18,16 @@ function AllComments({ postId }) {
                     setError('You must be logged in to view comments.');
                     return;
                 }
-        
+
                 if (!postId) {
                     setError('Post ID is required to fetch comments.');
                     return;
                 }
-        
+
                 const commentsCollection = collection(db, `posts/${postId}/comments`);
                 const q = query(commentsCollection, orderBy('createdAt', 'desc'));
                 const querySnapshot = await getDocs(q);
-        
+
                 const commentsData = [];
                 for (const docRef of querySnapshot.docs) {
                     const commentData = docRef.data();
@@ -43,14 +45,14 @@ function AllComments({ postId }) {
                         });
                     }
                 }
-        
+
                 setComments(commentsData);
             } catch (error) {
                 console.error('Error fetching comments:', error);
                 setError('Failed to fetch comments. Please try again later.');
             }
         };
-        
+
 
         fetchComments();
     }, [postId]);
@@ -66,18 +68,27 @@ function AllComments({ postId }) {
                     createdAt: serverTimestamp()
                 });
                 setCommentText(""); // Clear the comment text after sending
+
+                // Fetch user data to ensure profilePictureURL and fullname are available
+                const userDoc = await getDoc(doc(db, 'users', user.uid));
+                const userData = userDoc.data();
+
                 // Update comments state with new comment data
-                setComments(prevComments => [...prevComments, { 
+                setComments(prevComments => [...prevComments, {
                     text: commentText,
                     userId: user.uid,
-                    profilePictureURL: user.photoURL, // Assuming you have profilePictureURL in your users collection
-                    createdAt: new Date() 
+                    user: {
+                        profilePictureURL: userData.profilePictureURL,
+                        fullname: userData.fullname
+                    },
+                    createdAt: new Date()
                 }]);
             }
         } catch (error) {
             console.error("Error commenting on post:", error);
         }
     };
+
 
     const getTimeDifference = (timestamp) => {
         if (!(timestamp instanceof Date)) {
@@ -113,6 +124,24 @@ function AllComments({ postId }) {
 
     return (
         <div>
+            <h3 className='font-bold text-lg mb-3'>Comments</h3>
+            
+            <div className='flex items-center gap-3 mb-3'>
+                {/* Add profile picture */}
+                {auth.currentUser && auth.currentUser.photoURL && (
+                    <img src={auth.currentUser.photoURL} alt="Profile" className="rounded-full w-8 h-8" />
+                )}
+                <textarea
+                    value={commentText}
+                    onChange={(e) => setCommentText(e.target.value)}
+                    placeholder='Add a comment...'
+                    className='w-full p-2 border rounded-md'
+                />
+                <FaPaperPlane onClick={handleComment} className="text-primary cursor-pointer" />
+            </div>
+
+
+
             {error && <p>{error}</p>}
             {comments.slice(0, loadMoreCount).map((comment, index) => (
                 <div key={index} className='mb-3'>
@@ -130,10 +159,10 @@ function AllComments({ postId }) {
                         </div>
                     </div>
                     <div className='flex justify-between'>
-                    <p className='mt-2 mb-2 text-sm'>{comment.text}</p>
-                    {comment.userId === auth.currentUser.uid && (
-                        <button onClick={() => handleDeleteComment(comment.id)} className="text-sm text-red-500">Delete</button>
-                    )}
+                        <p className='mt-2 mb-2 text-sm'>{comment.text}</p>
+                        {comment.userId === auth.currentUser.uid && (
+                            <button onClick={() => handleDeleteComment(comment.id)} className="text-sm text-red-500">Delete</button>
+                        )}
                     </div>
                     <hr />
                 </div>

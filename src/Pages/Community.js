@@ -53,10 +53,12 @@ function Community() {
             <Sidebar />
             <div className="flex">
                 <div>
-                    <Post /> {/* Add the Post component */}
-                    <Posts posts={posts} /> {/* Pass the fetched posts as props */}
+                    <Post />
+                    <Posts posts={posts} />
                 </div>
-                {/* <Twitterposts /> */}
+                <div className="hidden md:block">
+                    <Twitterposts />
+                </div>
             </div>
 
 

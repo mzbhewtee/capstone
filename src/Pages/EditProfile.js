@@ -82,7 +82,7 @@ const EditProfileForm = () => {
     };
 
     return (
-        <div className="mr-10 ml-10 font-link p-4 flex justify-center overflow-y-auto h-screen items-center">
+        <div className="md:mr-10 md:ml-10 font-link p-4 flex justify-center overflow-y-auto h-screen items-center">
             <div className="rounded-lg p-24 relative shadow-lg border">
                 <FaArrowLeft className="text-xl absolute top-6 left-4 text-primary mb-5 cursor-pointer" onClick={() => navigate(-1)} />
                 <form onSubmit={handleSubmit}>
