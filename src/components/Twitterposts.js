@@ -6,7 +6,7 @@ import P1 from '../assets/images/P1.png';
 
 const Twitterposts = () => {
     return (
-        <div className="fixed right-5 w-80 top-28 h-100vh overflow-y-auto mb-10">
+        <div className="fixed right-5 w-80 top-16 h-100vh overflow-y-auto mb-10">
             <h2 className="text-lg text-primary text-center font-bold p-3">Sponsored</h2>
             <div className="bg-white flex p-3 rounded-md shadow-md border">
                 <div className="flex items-center">

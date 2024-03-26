@@ -5,7 +5,7 @@ import { FaArrowRight } from "react-icons/fa";
 class News extends React.Component {
     render() {
         return (
-            <Card className="mt-6 mb-6 w-full border">
+            <Card className="mt-6 mb-6 w-full border font-link">
                 <CardBody>
                     <Typography variant="h5" color="blue-gray" className="mb-2">
                         {this.props.header}

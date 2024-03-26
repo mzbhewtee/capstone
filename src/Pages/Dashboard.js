@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Sidebar } from "../components/Sidebar";
+import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import SimulatorComp from "../components/SimulatorsComp";
@@ -7,9 +8,12 @@ import microsoft from "../assets/images/microsoft.png";
 import ibm from "../assets/images/ibm.jpeg";
 import google from "../assets/images/google.jpeg";
 import News from "../components/News";
+import { Sidebar } from "../components/Sidebar";
+
 
 function Dashboard() {
-
+    const { currentUser } = useAuth(); // Access currentUser from auth context
+    const navigate = useNavigate(); // Initialize navigate hook
     const [news, setNews] = useState([]);
 
     useEffect(() => {
@@ -33,13 +37,21 @@ function Dashboard() {
             } catch (error) {
                 console.error('Error fetching news:', error);
             }
-        }
+        };
         fetchNews();
     }, []);
 
+    useEffect(() => {
+        // Check if user is logged in
+        if (!currentUser) {
+            // If user is not logged in, redirect to login page
+            navigate('/signin');
+        }
+    }, [currentUser, navigate]); // Add currentUser and navigate to dependency array
+
     return (
         <div className="">
-            < Sidebar />
+            <Sidebar />
             <div className="md:mr-10 md:ml-10 mb-10 font-link">
                 <div className="md:flex items-center justify-between border m-10 shadow-md rounded-md">
                     <div className="md:w-2/3 md:p-12 p-5">

@@ -1,19 +1,26 @@
-// Community.js
 import React, { useState, useEffect } from "react";
-import Sidebar from "../components/Sidebar";
-import Comments from "../components/Comments";
-import LikePost from "../components/LikePost";
-import CommentPost from "../components/CommentPost";
 import Post from "../components/Post";
 import Posts from "../components/Posts";
 import { db, auth } from "../firebase"; // Import auth and db from Firebase
-import { collection, query, orderBy, getDocs, onSnapshot, doc, setDoc, deleteDoc } from "firebase/firestore"; // Import Firestore functions
+import { collection, query, orderBy, getDocs } from "firebase/firestore"; // Import Firestore functions
 import Twitterposts from "../components/Twitterposts";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook
+import { Sidebar } from "../components/Sidebar";
 
 function Community() {
     const [posts, setPosts] = useState([]);
+    const navigate = useNavigate(); // Initialize navigate hook
 
     useEffect(() => {
+        // Check if user is logged in
+        const unsubscribeAuth = auth.onAuthStateChanged(user => {
+            if (!user) {
+                // If user is not logged in, redirect to login page
+                navigate('/signin');
+            }
+        });
+
+        // Fetch posts when component mounts
         const fetchPosts = async () => {
             try {
                 const postsCollection = collection(db, "posts");
@@ -30,23 +37,13 @@ function Community() {
             }
         };
 
-        fetchPosts(); // Fetch posts when component mounts
-
-        // Subscribe to changes in user's profile data
-        const user = auth.currentUser;
-        let unsubscribeUser;
-        if (user) {
-            const userDocRef = doc(db, 'users', user.uid);
-            unsubscribeUser = onSnapshot(userDocRef, () => {
-                // Update posts when user's profile data changes
-                fetchPosts();
-            });
-        }
+        fetchPosts();
 
         return () => {
-            if (unsubscribeUser) unsubscribeUser();
+            // Unsubscribe from auth state changes
+            unsubscribeAuth();
         };
-    }, []);
+    }, [navigate]); // Add navigate to dependency array
 
     return (
         <div className="font-link">
@@ -60,8 +57,6 @@ function Community() {
                     <Twitterposts />
                 </div>
             </div>
-
-
         </div>
     );
 }

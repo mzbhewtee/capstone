@@ -22,3 +22,23 @@ export const doSignUpWithGoogle = () => {
 export const doSignOut = () => {
     return auth.signOut();
 };
+
+
+// Function to update the password
+export const doPasswordUpdate = (password) => {
+    return new Promise((resolve, reject) => {
+        // Check if there is a logged-in user
+        const user = auth.currentUser;
+        if (!user) {
+            reject(new Error('No user is currently logged in.'));
+            return;
+        }
+
+        // Update the password
+        user.updatePassword(password).then(() => {
+            resolve('Password updated successfully.');
+        }).catch((error) => {
+            reject(error);
+        });
+    });
+};

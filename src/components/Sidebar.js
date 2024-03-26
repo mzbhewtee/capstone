@@ -1,29 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-    Card,
+    Drawer,
+    Button,
     Typography,
+    IconButton,
     List,
     ListItem,
     ListItemPrefix,
     Accordion,
     AccordionHeader,
     AccordionBody,
-    Input,
 } from "@material-tailwind/react";
-import { FaSearch } from "react-icons/fa";
 import { IoIosPeople } from "react-icons/io";
 import { MdSpaceDashboard } from "react-icons/md";
 import { IoSchoolSharp, IoNotifications } from "react-icons/io5";
 import { UserCircleIcon, Cog6ToothIcon, PowerIcon } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import logo from "../assets/images/logo.png";
 import { Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
 import { doSignOut } from "../auth";
 import { useAuth } from "../context/authContext";
+import Logo from "../assets/images/logo.png";
 
 export function Sidebar() {
-    const [open, setOpen] = useState(false); // State for sidebar visibility
+    const [open, setOpen] = React.useState(false);
+    const openDrawer = () => setOpen(true);
+    const closeDrawer = () => setOpen(false);
     const [openEducation, setOpenEducation] = React.useState(0);
     const [openQuantumPhysics, setOpenQuantumPhysics] = React.useState(false);
     const [openQuantumComputing, setOpenQuantumComputing] = React.useState(false);
@@ -62,35 +64,31 @@ export function Sidebar() {
     };
 
     return (
-        <>
-            <div className="flex justify-between items-center md:mr-10 md:ml-10 mt-5 font-link">
-                <div className="z-30 p-5 ml-5 fixed rounded-full bg-primary/10 backdrop-blur-sm">
-                    <button
-                        onClick={() => setOpen(!open)}
-                        aria-label="Toggle sidebar" // Accessibility improvement
-                    >
-                        {open ? <XMarkIcon className="h-8 w-8 text-primary" /> : <Bars3Icon className="h-8 w-8 text-primary" />}
-                    </button>
-                </div>
-                <div className="p-4 ml-auto mr-6"> {/* 'ml-auto' moves the search input to the right */}
-                    <div className="relative md:w-72 w-48">
-                        <Input
-                            type="text"
-                            placeholder="Search"
-                            label="Search"
-                            className="!border !border-gray-300 bg-white text-gray-900 shadow-lg shadow-gray-900/5 ring-4 ring-transparent placeholder:text-gray-500 focus:!border-gray-900 focus:!border-t-gray-900 focus:ring-gray-900/10"
-                            labelProps={{
-                                className: "hidden",
-                            }}
-                            containerProps={{ className: "min-w-[100px]" }}
-                            icon={<FaSearch className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500" />}
-                        />
-                    </div>
-                </div>
+        <React.Fragment>
+            <div className="z-30 p-5 ml-5 mt-5 font-link fixed rounded-full bg-primary/10 backdrop-blur-sm">
+                <Bars3Icon className="h-8 w-8 text-primary cursor-pointer" onClick={openDrawer} />
             </div>
-
-            <Card className={`h-[100vh] md:w-full max-w-[20rem] p-4 z-20 mt-20 font-link shadow-xl shadow-blue-gray-900/5 fixed top-0 overflow-y-auto transition duration-300 ease-in-out ${open ? "translate-x-0" : "-translate-x-full"
-                }`}>
+            <Drawer open={open} onClose={closeDrawer} className="overflow-y-auto">
+                <div className="mb-2 flex items-center justify-between p-4">
+                    <img src={Logo} alt="QuantumRenew" className="w-10 h-10" />
+                    <Typography color="blue-gray" className="text-lg font-bold">QuantumRenew</Typography>
+                    <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2}
+                            stroke="currentColor"
+                            className="h-5 w-5"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </IconButton>
+                </div>
                 <List>
                     <ListItem onClick={() => navigateTo('/dashboard')}>
                         <ListItemPrefix>
@@ -302,9 +300,10 @@ export function Sidebar() {
                         <Typography color="blue-gray" className="mr-auto font-normal">Log Out</Typography>
                     </ListItem>
                 </List>
-            </Card>
-        </>
+                <Button className="mt-3 ml-5" size="sm">
+                    Documentation
+                </Button>
+            </Drawer>
+        </React.Fragment>
     );
 }
-
-export default Sidebar;

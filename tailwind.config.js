@@ -7,6 +7,7 @@ module.exports = withMT({
     "path-to-your-node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
     "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "media", // Set darkMode to "media"
   theme: {
     extend: {
       colors: {
@@ -21,13 +22,16 @@ module.exports = withMT({
       width: {
         "norm": "19rem",
       },
-      textSizes: {
+      fontSize: {
         "xxs": "4.5rem",
       },
       backgroundImage: theme => ({
         'features': "url('../src/assets/images/key-features.png')",
         'features2': "url('../src/assets/images/key-featurs-small.png')",
       }),
+      fontFamily: {
+        "font-link": ["IBM Plex Sans", "sans-serif"],
+      },
     },
   },
   plugins: [],

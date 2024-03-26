@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 import image from "../assets/images/profile.png";
-import Sidebar from "../components/Sidebar";
+import { Sidebar } from "../components/Sidebar";
+
 
 function Notification() {
+    const { currentUser } = useAuth(); // Access currentUser from auth context
+    const navigate = useNavigate(); // Initialize navigate hook
+
+    useEffect(() => {
+        // Check if user is logged in
+        if (!currentUser) {
+            // If user is not logged in, redirect to login page
+            navigate('/signin');
+        }
+    }, [currentUser, navigate]); // Add currentUser and navigate to dependency array
+
     return (
         <div className="">
-            < Sidebar />
+            <Sidebar />
             <div className="md:mr-10 md:ml-10 font-link pl-5 md:pl-96 pr-5 mt-5 md:pr-96 pb-20 md:pb-10">
                 <div className="border rounded-md w-full h-auto p-5">
                     <div className="items-center justify-center">
@@ -22,8 +36,6 @@ function Notification() {
                             </div>
                         </div>
                         <div className="h-0.5 w-full mt-4 bg-primary/30"></div>
-
-
                     </div>
                 </div>
             </div>

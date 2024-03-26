@@ -12,7 +12,7 @@ import Settings from './Pages/Settings';
 import Profile from './Pages/Profile';
 import EditProfile from './Pages/EditProfile'; 
 import AddNews from './components/AddNews';
-import NewsPage from './Pages/NewsPage';
+import NewsPage from './Pages/NewsPage';  
 
 function App() {
   return (

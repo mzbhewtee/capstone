@@ -13,64 +13,29 @@ import ExperimentalBasis from "./ExperimentalBasis";
 import AdvancedTopics from "./AdvancedTopics";
 import image1 from "../assets/images/qp.jpg";
 import Quiz from "../components/Quiz";
+import SimulatorsComp from "../components/SimulatorsComp";
+import harvard from "../assets/images/harvard.jpeg";
+import ocw from "../assets/images/ocw.jpeg";
+import caltech from "../assets/images/caltech.png";
 
 const QP = () => {
     const questions = [
         {
-            text: 'What is the significance of the Schrödinger Equation in quantum mechanics?',
-            options: [
-                'It describes the behavior of particles in classical mechanics.',
-                'It provides a mathematical framework for predicting the evolution of quantum systems.',
-                'It explains the phenomenon of wave-particle duality.',
-                'It determines the energy levels of atoms in a crystal lattice.'
-            ],
-            correctAnswer: 'It provides a mathematical framework for predicting the evolution of quantum systems.'
+            text: 'What is the capital of France?',
+            options: ['London', 'Paris', 'Berlin', 'Madrid'],
+            correctAnswer: 'Paris',
         },
         {
-            text: 'What is entanglement in the context of quantum systems?',
-            options: [
-                'It refers to the process of observing quantum particles without disturbing their states.',
-                'It describes the behavior of particles at absolute zero temperature.',
-                'It involves the correlation between the states of two or more particles, even when separated by large distances.',
-                'It explains the transition of particles between different energy levels.'
-            ],
-            correctAnswer: 'It involves the correlation between the states of two or more particles, even when separated by large distances.'
+            text: 'Which planet is known as the Red Planet?',
+            options: ['Earth', 'Mars', 'Venus', 'Jupiter'],
+            correctAnswer: 'Mars',
         },
-        {
-            text: 'Which experiment demonstrates the wave-particle duality of matter?',
-            options: [
-                "Young's double-slit experiment",
-                'Michelson-Morley experiment',
-                'Millikan oil-drop experiment',
-                "Rutherford's gold foil experiment"
-            ],
-            correctAnswer: "Young's double-slit experiment"
-        },
-        {
-            text: 'What is the role of quantum operators in quantum mechanics?',
-            options: [
-                'They represent physical observables, such as position and momentum.',
-                'They control the behavior of classical mechanical systems.',
-                'They determine the boundary conditions of wave functions.',
-                'They describe the interaction between particles and fields.'
-            ],
-            correctAnswer: 'They represent physical observables, such as position and momentum.'
-        },
-        {
-            text: 'How does quantum mechanics differ from classical mechanics in describing the behavior of particles?',
-            options: [
-                'Quantum mechanics is deterministic, while classical mechanics is probabilistic.',
-                'Quantum mechanics predicts precise trajectories of particles, while classical mechanics only provides statistical descriptions.',
-                'Quantum mechanics introduces uncertainty and wave-particle duality, which are absent in classical mechanics.',
-                'Quantum mechanics relies solely on Newton\'s laws of motion, whereas classical mechanics incorporates principles of relativity.'
-            ],
-            correctAnswer: 'Quantum mechanics introduces uncertainty and wave-particle duality, which are absent in classical mechanics.'
-        }
+        // Add more questions as needed
     ];
-
 
     return (
         <div className="font-link">
+
             <h2 className="font-bold text-center text-3xl">Quantum Physics</h2>
             <div className="md:flex items-center">
                 <img
@@ -142,11 +107,32 @@ const QP = () => {
             < AdvancedTopics />
 
             <p className="text-red-900 font-bold mt-10 text-lg">Learn More:</p>
+            <div className="flex justify-center items-center mt-5">    
+            <SimulatorsComp
+                image={harvard}
+                header="Introduction to quantum
+                    mechanics"
+                paragraph="Learn the fundamental principles of quantum mechanics and explore the quantum world through interactive simulations."
+                linkUrl="https://scholar.harvard.edu/files/david-morin/files/waves_quantum.pdf"
+                info="Learn More"
+            />
+            <SimulatorsComp
+                image={ocw}
+                header="Quantum Physics I"
+                paragraph="Explore the principles of quantum physics through MIT's OpenCourseWare, covering topics such as wave-particle duality and quantum entanglement."
+                linkUrl="https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/"
+                info="Learn More"
+            />
+            <SimulatorsComp
+                image={caltech}
+                header="Quantum Science Explained"
+                paragraph="Gain in-depth insights into quantum science and explore the mysteries of quantum physics through Caltech's Science Exchange."
+                linkUrl="https://scienceexchange.caltech.edu/topics/quantum-science-explained/quantum-physics"
+                info="Learn More"
+            />
+            </div>
             <ol className="underline font-bold">
                 <li><a href="https://quantumphysicsmadesimple.com/introduction-for-beginners/" target="_blank" rel="noopener noreferrer">Quantum Physics Made Simple (An introduction for beginners)</a></li>
-                <li><a href="https://scienceexchange.caltech.edu/topics/quantum-science-explained/quantum-physics" target="_blank" rel="noopener noreferrer">Caltech Science Exchange (In-depth insights)</a></li>
-                <li><a href="https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare (Undergraduate Quantum Physics course)</a></li>
-                <li><a href="https://scholar.harvard.edu/files/david-morin/files/waves_quantum.pdf" target="_blank" rel="noopener noreferrer">Harvard’s Introduction to Quantum Mechanics (Brief overview)</a></li>
             </ol>
         </div>
     );

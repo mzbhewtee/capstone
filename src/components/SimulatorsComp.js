@@ -12,7 +12,7 @@ class SimulatorComp extends React.Component {
         return (
             <Card className="mt-6 md:mb-6 md:w-1/3 md:ml-5 mb-20">
                 <CardHeader color="white" className="relative h-56">
-                    <img
+                    <img className="h-full"
                         src={this.props.image}
                         alt="card-image"
                     />
