@@ -107,7 +107,7 @@ const QP = () => {
             < AdvancedTopics />
 
             <p className="text-red-900 font-bold mt-10 text-lg">Learn More:</p>
-            <div className="flex justify-center items-center mt-5">    
+            <div className="md:flex justify-center items-center mt-5">    
             <SimulatorsComp
                 image={harvard}
                 header="Introduction to quantum

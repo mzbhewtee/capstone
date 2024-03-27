@@ -124,11 +124,11 @@ export function Sidebar() {
                                     </ListItemPrefix>
                                     <Typography color="blue-gray">Quantum Physics</Typography>
                                 </ListItem>
-                                {/* Other items within the Quantum Physics list */}
+                                
                             </List>
                             {openQuantumPhysics && (
                                 <List className="p-0 ml-4">
-                                    {/* Your list of Quantum Physics sub-items here */}
+                                    
                                     <ListItem className="cursor-pointer mb-3">
                                         <Link to="Classical Mechanics" spy={true} smooth={true} offset={-70} duration={500}>
                                             Classical Mechanics
