@@ -21,16 +21,30 @@ import caltech from "../assets/images/caltech.png";
 const QP = () => {
     const questions = [
         {
-            text: 'What is the capital of France?',
-            options: ['London', 'Paris', 'Berlin', 'Madrid'],
-            correctAnswer: 'Paris',
+            text: 'Who is considered the father of quantum mechanics?',
+            options: ['Albert Einstein', 'Niels Bohr', 'Max Planck', 'Erwin Schrödinger'],
+            correctAnswer: 'Max Planck',
         },
         {
-            text: 'Which planet is known as the Red Planet?',
-            options: ['Earth', 'Mars', 'Venus', 'Jupiter'],
-            correctAnswer: 'Mars',
+            text: 'What phenomenon describes the simultaneous existence of a particle in multiple states until it is observed?',
+            options: ['Wave-particle duality', 'Quantum entanglement', 'Superposition', 'Tunneling'],
+            correctAnswer: 'Superposition',
         },
-        // Add more questions as needed
+        {
+            text: 'What equation describes how the quantum state of a physical system changes over time?',
+            options: ['Newton\'s second law', 'Euler-Lagrange equation', 'Heisenberg uncertainty principle', 'Schrödinger equation'],
+            correctAnswer: 'Schrödinger equation',
+        },
+        {
+            text: 'Which scientist proposed the famous thought experiment involving a cat to illustrate the concept of superposition?',
+            options: ['Werner Heisenberg', 'Max Planck', 'Erwin Schrödinger', 'Paul Dirac'],
+            correctAnswer: 'Erwin Schrödinger',
+        },
+        {
+            text: 'What term describes the phenomenon where two or more quantum particles become entangled, such that the state of one particle instantaneously influences the state of the other(s), regardless of the distance between them?',
+            options: ['Quantum tunneling', 'Quantum superposition', 'Quantum entanglement', 'Quantum decoherence'],
+            correctAnswer: 'Quantum entanglement',
+        },
     ];
 
     return (
