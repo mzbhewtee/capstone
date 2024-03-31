@@ -41,7 +41,7 @@ const Quiz = ({ questions }) => {
 
     // Render quiz questions and answers
     return (
-        <div className="p-5">
+        <div className="p-1 md:p-5">
             <h1 className="text-2xl font-bold mb-5">Quiz</h1>
             {quizCompleted ? (
                 // Render questions and answers if the quiz is completed
@@ -76,6 +76,7 @@ const Quiz = ({ questions }) => {
                                 <li key={index}>
                                     <label>
                                         <input
+                                            className="mr-2 mb-2"
                                             type="radio"
                                             name="answer"
                                             value={option}
