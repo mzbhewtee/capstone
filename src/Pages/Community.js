@@ -53,7 +53,7 @@ function Community() {
                     <Post />
                     <Posts posts={posts} />
                 </div>
-                <div className="hidden md:block">
+                <div className="hidden lg:block">
                     <Twitterposts />
                 </div>
             </div>

@@ -89,7 +89,7 @@ function Post() {
 
     return (
         <>
-            <div className='overflow-hidden p-5 md:pl-96 md:pr-96 font-link'>
+            <div className='overflow-hidden p-5 lg:pl-96 lg:pr-96 font-link'>
                 <div className='w-full border rounded-md p-4 md:p-8 shadow-md'>
                     <div className='flex items-center'>
                         {userProfilePicture && (

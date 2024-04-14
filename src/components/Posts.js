@@ -33,7 +33,7 @@ function AllPosts() {
     return (
         <div>
             {posts.map((post, index) => (
-                <div key={index} className='overflow-hidden p-5 md:pl-96 md:pr-96 font-link'>
+                <div key={index} className='overflow-hidden p-5 lg:pl-96 lg:pr-96 font-link'>
                     <div className='w-full border rounded-md p-4 md:p-8 shadow-md'>
                         <div className='flex items-center'>
                             <img src={post.profilePictureURL} alt="Profile" className="rounded-full w-12 h-12 mr-3 shadow-md" />
@@ -42,7 +42,7 @@ function AllPosts() {
                             <p className="ml-auto text-xs text-gray-500">{formatDistanceToNow(post.createdAt.toDate(), { addSuffix: true })}</p>
                             </div>
                         </div>
-                        <p className='mt-5 mb-3'>{post.content}</p>
+                        <p className='mt-5 mb-3 text-justify'>{post.content}</p>
                         {post.imageUrl && <img src={post.imageUrl} alt="Post" className='rounded-md shadow-md mb-5' />}
                         {/* Like button */}
                         <div className='flex items-end justify-between'>
