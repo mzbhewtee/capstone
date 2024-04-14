@@ -33,7 +33,7 @@ function AllPosts() {
     return (
         <div>
             {posts.map((post, index) => (
-                <div key={index} className='overflow-hidden p-5 lg:pl-96 lg:pr-96 font-link'>
+                <div key={index} className='overflow-hidden p-5 lg:pl-32 lg:pr-96 font-link'>
                     <div className='w-full border rounded-md p-4 md:p-8 shadow-md'>
                         <div className='flex items-center'>
                             <img src={post.profilePictureURL} alt="Profile" className="rounded-full w-12 h-12 mr-3 shadow-md" />

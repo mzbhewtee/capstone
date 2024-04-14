@@ -105,7 +105,7 @@ function Profile() {
   return (
     <div className="">
       <Sidebar />
-      <div className='overflow-hidden p-5 lg:pl-96 lg:pr-96 font-link'>
+      <div className='overflow-hidden p-5 lg:pl-32 lg:pr-96 font-link'>
         <div className='w-full md:border rounded-md p-4 md:p-8 md:shadow-md'>
           <div className='items-center'>
             {/* <div className="w-full md:w-auto m-3 bg-white md:border md:shadow-md rounded-lg md:p-8"> */}
@@ -158,7 +158,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className="mt-1 p-4 lg:pl-96 lg:pr-96 ">
+      <div className="mt-1 p-4 lg:pl-32 lg:pr-96 ">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold">Your Posts</h2>
           <button
@@ -201,7 +201,7 @@ function Profile() {
         </div>
       )}
 
-      <div className="overflow-hidden p-5 lg:pl-96 lg:pr-96 font-link">
+      <div className="overflow-hidden p-5 lg:pl-32 lg:pr-96 font-link">
         <div className="w-full md:border rounded-md p-4 md:p-8 md:shadow-md">
           {userPosts.map((post) => (
             <div key={post.id} className="relative">
