@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/authContext";
-import { useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
+import { useNavigate } from "react-router-dom";
 import { doc, updateDoc } from "firebase/firestore";
 import { storage, db } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { FaUpload, FaArrowLeft } from "react-icons/fa";
+import Profile from "../assets/images/profile.png";
 
 const EditProfileForm = () => {
     const { currentUser } = useAuth();
@@ -14,7 +15,7 @@ const EditProfileForm = () => {
     const [profilePicture, setProfilePicture] = useState(null);
     const [profilePictureURL, setProfilePictureURL] = useState("");
     const [uploadProgress, setUploadProgress] = useState(0);
-    const navigate = useNavigate(); // Use useNavigate instead of useHistory
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (currentUser) {
@@ -28,6 +29,8 @@ const EditProfileForm = () => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         setProfilePicture(file);
+        // Update profile picture URL preview
+        setProfilePictureURL(URL.createObjectURL(file));
     };
 
     const handleSubmit = async (e) => {
@@ -86,14 +89,23 @@ const EditProfileForm = () => {
             <div className="rounded-lg p-24 relative shadow-lg border">
                 <FaArrowLeft className="text-xl absolute top-6 left-4 text-primary mb-5 cursor-pointer" onClick={() => navigate(-1)} />
                 <form onSubmit={handleSubmit}>
-                    {profilePictureURL && (
-                        <div className="justify-center flex mb-5 items-end">
+                    <div className="justify-center flex mb-5 items-end">
+                        {profilePictureURL ? (
                             <img src={profilePictureURL} alt="Profile" style={{ width: 100, height: 100 }} className="rounded-full" />
-                            <label htmlFor="profilePicture" className="cursor-pointer">
-                                <FaUpload className="text-xl text-primary" />
-                            </label>
-                        </div>
-                    )}
+                        ) : (
+                            <img src={Profile} alt="Default Profile" style={{ width: 100, height: 100 }} className="rounded-full" />
+                        )}
+                        <label htmlFor="profilePicture" className="cursor-pointer ml-4">
+                            <FaUpload className="text-xl text-primary" />
+                            <input
+                                style={{ display: 'none' }}
+                                type="file"
+                                id="profilePicture"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                        </label>
+                    </div>
 
                     <div className="flex items-center w-auto mb-3 gap-2">
                         <label htmlFor="fullname" className="font-bold">Full Name</label>
@@ -124,13 +136,6 @@ const EditProfileForm = () => {
                             onChange={(e) => setBio(e.target.value)}
                         ></textarea>
                     </div>
-                    <input
-                        style={{ display: 'none' }}
-                        type="file"
-                        id="profilePicture"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
                     <div className="flex justify-end mt-5">
                         <button type="submit" className="bg-primary p-3 rounded-lg text-white">Update Profile</button>
                     </div>
